@@ -1,0 +1,68 @@
+project:
+  type: website
+  output-dir: "."
+
+website:
+  title: "Zaawansowany język Python"
+  navbar:
+    left:
+      - text: "Strona główna"
+        file: index.qmd
+      - text: "Dzień 1"
+        menu:
+          - text: "Sprawy organizacyjne"
+            file: sprawyorganizacyjne.qmd
+          - text: "Programowanie obiektowe"
+            file: po.qmd
+          - text: "Parę definicji"
+            file: po2.qmd
+          - text: "Pola w klasie"
+            file: po3.qmd
+          - text: "Metody w klasie"
+            file: po4.qmd
+          - text: "Konstruktor"
+            file: po5.qmd
+      - text: "Dzień 2"
+        menu:
+          - text: "Jak opisywać obiekty?"
+            file: po6.qmd
+          - text: "Prywatne pola i metody?"
+            file: po7.qmd
+          - text: "Właściwości"
+            file: po8.qmd
+          - text: "Operator przypisania"
+            file: po9.qmd
+      - text: "Dzień 3"
+        menu:
+          - text: "Dziedziczenie"
+            file: po10.qmd
+          - text: "Polimorfizm"
+            file: po11.qmd
+          - text: "Statyczność"
+            file: po12.qmd
+          - text: "Sortowanie"
+            file: po13.qmd
+          - text: "Obsługa błędów"
+            file: po14.qmd
+          - text: "Emulacja typów numerycznych"
+            file: po15.qmd
+          - text: "Więcej metod magicznych"
+            file: po16.qmd
+            
+
+    right:
+      - icon: github
+        href: https://github.com/pjastr/zjp2023v2
+
+format:
+  html:
+    theme:
+      light: default
+      dark: solar
+    toc: true
+    toc-location: left
+
+editor: visual
+
+lang: pl
+

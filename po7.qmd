@@ -1,0 +1,70 @@
+---
+title: "Dzień 2 - Prywatne pola i metody?"
+format: html
+---
+
+Kod nr 1:
+```python
+class Person:
+    __name = "Jan"
+
+
+p1 = Person()
+# print(p1.__name)
+print(p1._Person__name)
+
+```
+
+**Ćwiczenie.** Dla poniższej klasy sprawdź parę obiektów i sprawdź dostępy do składowych.
+
+Kod nr 2:
+```python
+class P:
+    def __init__(self, name, alias):
+        self.name = name  # public
+        self.__alias = alias  # private
+
+    def who(self):
+        print('name  : ', self.name)
+        print('alias : ', self.__alias)
+
+```
+
+A co z prywatnymi metodami?
+
+Kod nr 3:
+```python
+class Person:
+    __name = "Jan"
+
+    def __get_name(self):
+        return self.__name
+
+
+p1 = Person()
+# print(p1.__get_name())
+print(p1._Person__get_name())
+
+```
+
+**Ćwiczenie2.** Dla poniższej klasy sprawdź parę obiektów i sprawdź dostępy do składowych.
+
+Kod nr 4:
+```python
+class P:
+    def __init__(self, name, alias):
+        self.name = name  # public
+        self.__alias = alias  # private
+
+    def who(self):
+        print('name  : ', self.name)
+        print('alias : ', self.__alias)
+
+    def __foo(self):  # private method
+        print('This is private method')
+
+    def foo(self):  # public method
+        print('This is public method')
+        self.__foo()
+
+```

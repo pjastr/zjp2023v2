@@ -1,0 +1,212 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Zaawansowany język Python",
+    "section": "",
+    "text": "Strona zawierały materiały przygotowane na przedmiot “Zaawansowany język Python” realizowanego w ramach studiów podyplomowych na WMiI UWM w Olsztynie.\nOpracowanie materiałów: dr Piotr Jastrzębski\nRok akademicki: 2022/2023.\nStrona domowa http://wmii.uwm.edu.pl/~piojas/\nOstatnia aktualizacja: 2023-03-03 22:49:47\nKod z zajęć z dnia 28.01.2023:\n\nDSwPython https://github.com/pjastr/zjp2801\nDSwP https://github.com/pjastr/zaj2801\n\nKod z zajęć z dnia 4.02.2023:\n\nDSwPython https://github.com/pjastr/zjp402\nDSwP https://github.com/pjastr/zaj402"
+  },
+  {
+    "objectID": "po.html",
+    "href": "po.html",
+    "title": "Dzień 1 - Programowanie obiektowe",
+    "section": "",
+    "text": "Wszystko jest obiektem -?\na = 5\nb = a\nb += 2\nprint(a)\nprint(b)\n\na = [2, 3, 4]\nb = a\nprint(a)\nprint(b)\na[1] = -3\nprint(a)\nprint(b)\nb = [6, 7]\nprint(a)\nprint(b)"
+  },
+  {
+    "objectID": "po.html#paradygmat-obiektowy---po-co-jest",
+    "href": "po.html#paradygmat-obiektowy---po-co-jest",
+    "title": "Dzień 1 - Programowanie obiektowe",
+    "section": "Paradygmat obiektowy - po co jest?",
+    "text": "Paradygmat obiektowy - po co jest?\n\nJeśli chcemy zbudować 5 identycznych domów, nie potrzeba nam 5 projektów.\nJeśli chcemy wyprodukować 4 samochody, nie potrzebujemy oddzielnych projektów.\nProgramowanie obiektowe stara się pogrupować podobne „byty” na pewnym poziomie abstrakcji."
+  },
+  {
+    "objectID": "po.html#przykład",
+    "href": "po.html#przykład",
+    "title": "Dzień 1 - Programowanie obiektowe",
+    "section": "Przykład",
+    "text": "Przykład\n\nChcemy napisać program wyliczający wartość rynkową domu w zależności od ilości pokoi, posiadania garażu, ogrodu, ilości pięter, powierzchni, itp…"
+  },
+  {
+    "objectID": "po.html#pierwsza-klasa---house",
+    "href": "po.html#pierwsza-klasa---house",
+    "title": "Dzień 1 - Programowanie obiektowe",
+    "section": "Pierwsza klasa - House",
+    "text": "Pierwsza klasa - House\n\nNa pewnym poziomie abstrakcji opisuje kawałek rzeczywistości.\nZawiera dane opisujące możliwe stany.\nZawiera metody opisujące możliwe zachowania.\nMożemy ją zastosować do wielu budynków."
+  },
+  {
+    "objectID": "po.html#pierwszy-obiekt---johnhouse",
+    "href": "po.html#pierwszy-obiekt---johnhouse",
+    "title": "Dzień 1 - Programowanie obiektowe",
+    "section": "Pierwszy obiekt - johnHouse",
+    "text": "Pierwszy obiekt - johnHouse\n\nKonkretny byt.\nMa konkretne własności.\n\nKonwencja\n\npola - zmienne w klasie\nmetody - funkcje w klasie\n\nKod nr 1:\nclass House:\n    pass\n\n\njohnHouse = House()\nKod nr 2:\nclass House:\n    \"\"\"The class that describes houses.\"\"\"\n    pass\n\n\nd = House()\nKod nr 3:\nclass House:\n    \"\"\"The class that describes houses.\"\"\"\n\n    area = 100\n\n    def get_price(self):\n        return 3000 * self.area\n\n\nd = House()\nprint(d.get_price())\nd2 = House()\nd2.area = 123\nprint(d2.get_price())"
+  },
+  {
+    "objectID": "po.html#po-co-taka-konstrukcja",
+    "href": "po.html#po-co-taka-konstrukcja",
+    "title": "Dzień 1 - Programowanie obiektowe",
+    "section": "Po co taka konstrukcja?",
+    "text": "Po co taka konstrukcja?\n\nZmniejszenie luki reprezentacji.\nUłatwia podział pracy i współpracę między programistami.\nLepsze grupowanie, czytelność kodu.\nJak w data science? https://www.kdnuggets.com/2019/08/object-oriented-programming-data-scientists-estimator.html\n\n\n\n\n\nLego jako model programowania obiektowego.\n\n\nPytanie: czy korzystanie z klas jest obowiązkowe w Pythonie?\nĆwiczenia:\n\nStwórz klasę Movie z polem title. Stwórz dwa obiekty w tym typie.\nStwórz klasę Person, dodaj w niej 5 wybranych przez siebie pól i dwie metody. Stwórz dwa obiekty i poćwicz na nich ustawianie pól i wywoływanie metod."
+  },
+  {
+    "objectID": "po10.html",
+    "href": "po10.html",
+    "title": "Dzień 3 - Dziedziczenie",
+    "section": "",
+    "text": "„Mechanizm”, dzięki któremu jedna z klas może posiąść cechy innej klasy.\nKlasa bazowa – klasa, z której jest dziedziczone\nKlasa potomna/pochodna – klasa, która dziedziczy\n\nPo co jest dziedziczenie?\n\nKlasy potomne mogą współdzielić zachowania klas potomnych.\nMożemy rozszerzyć klasy bez powielania kodu.\nUwypukla wspólne cechy (wspiera abstrakcję).\n\nKod nr 1:\nclass Person:\n\n    def __init__(self, name):\n        self.name = name\n\n    def get_name(self):\n        return self.name\n\n    def is_employee(self):\n        return False\n\n\nclass Employee(Person):\n\n    def is_employee(self):\n        return True\n\n\nemp = Person(\"Bartek\")\nprint(emp.get_name(), emp.is_employee())\n\nemp = Employee(\"Sylwia\")\nprint(emp.get_name(), emp.is_employee())\nKlasa object jest bazowa dla wszystkich obiektów.\nKod nr 2:\nclass Person(object):\n\n    def __init__(self, name):\n        self.name = name\n\n    def get_name(self):\n        return self.name\n\n    def is_employee(self):\n        return False\n\n\nclass Employee(Person):\n\n    def is_employee(self):\n        return True\n\n\nemp = Person(\"Bartek\")\nprint(emp.get_name(), emp.is_employee())\n\nemp = Employee(\"Sylwia\")\nprint(emp.get_name(), emp.is_employee())\nJak zrobić konstruktor w klasie pochodnej?\nKod nr 3:\nclass Person:\n    def __init__(self, fname, lname):\n        self.firstname = fname\n        self.lastname = lname\n\n    def printname(self):\n        print(self.firstname, self.lastname)\n\n\nclass Student(Person):\n    def __init__(self, fname, lname):\n        Person.__init__(self, fname, lname)\nKod nr 4:\nclass Person:\n    def __init__(self, fname, lname):\n        self.firstname = fname\n        self.lastname = lname\n\n    def printname(self):\n        print(self.firstname, self.lastname)\n\n\nclass Student(Person):\n    def __init__(self, fname, lname):\n        super().__init__(fname, lname)\nKod nr 5:\nclass Person:\n    def __init__(self, fname, lname):\n        self.firstname = fname\n        self.lastname = lname\n\n    def printname(self):\n        print(self.firstname, self.lastname)\n\n\nclass Student(Person):\n    def __init__(self, fname, lname, year):\n        super().__init__(fname, lname)\n        self.graduationyear = year\n\n    def welcome(self):\n        print(\"Welcome\", self.firstname, self.lastname, \"to the class of\", self.graduationyear)\nĆwiczenie1. Dodaj do powyższych klas więcej pól i metod i poćwicz ich wywoływanie.\nĆwiczenia2. Wykonaj poniższe czynności:\nA. Napisz klasę Product. Klasa powinna posiadać prywatne atrybuty instancyjne:\n\nname typu str (pol. nazwa)\nprice typu float (pol. cena)\nquality typu int (pol. jakość)\ntax typu float (pol. podatek)\n\nB. Stwórz inicjalizator z czterema argumentami (zachowaj kolejność i nazwy jak wcześniejszym punkcie). Zadbaj również o to aby inicjalizator w razie podania argumentów liczbowych jako ujemne, to ustawiał je niezależnie na zero. Nazwa musi być napisem – jeśli nie jest, ustaw napis pusty ('').\nC. Napisz metodę zwracają opis obiektu.\nD. Zaimplementuj klasę Book dziedziczącą po klasie Product. Klasa ta powinna posiadać atrybuty instancyjne prywatne:\n\nauthors jako lista napisów (pol. autorzy).\ntitle typu str (pol. tytuł)\n\nE. Rozszerz inicjalizator w klasie Book biorąc odpowiednio wszystkie atrybuty z klasy bazowej i pochodnej. Atrybut authors musi być niepustą listą – jeśli nie jest, dodaj tam napis 'Adam Mickiewicz'. Atrybut tax ustaw jako zero niezależnie od przekazanego argumentu.\nF. Napisz metodę zwracają opis obiektu w klasie Book.\nG. Stwórz po dwa obiekty w powyższych typach."
+  },
+  {
+    "objectID": "po11.html",
+    "href": "po11.html",
+    "title": "Dzień 3 - Polimorfizm",
+    "section": "",
+    "text": "Polimorfizm to inaczej “wielopostaciowość”. Innymi słowy, mechanizmy pozwalające programiście używać wartości, zmiennych i podprogramów na kilka różnych sposobów.\nJak to jest zaimplementowane w języku Python?\nĆwiczenie. Stwórz klasy dotyczące osoby, książki i zwierzęcia (z kilkoma polami) do ćwiczenia poniższych konstrukcji.\n\nPolimorfizm wbudowanych operatorów\nKod nr 1:\na = 4\nb = 2\nc = a + b\nprint(c)\ns1 = \"abc\"\ns2 = \"xyz\"\ns3 = s1 + s2\nprint(s3)\n\n\nPolimorfizm wbudowanych metod/funkcji\nKod nr 2\nprint(len(\"abcde\"))\nprint(len([3, -2, 8, 2, 2, -2, 0]))\n\n\nPrzeciążanie funkcji (?) - domyślna wartość argumentu\nKod nr 3\ndef sumxyz(x, y, z=0):\n    return x + y + z\n\n\nprint(sumxyz(1, 2, 3))\nprint(sumxyz(3, 4))\n\n\nPrzeciążenie metody w klasie - domyślna wartość argumentu\nKod nr 4\nclass Number:\n    def sum(self, a=None, b=None, c=None):\n        s = 0\n        if a is not None and b is not None and c is not None:\n            s = a + b + c\n        elif a is not None and b is not None:\n            s = a + b\n        else:\n            s = a\n        return s\n\n\nx = Number()\nprint(x.sum(1))\nprint(x.sum(3, 5))\nprint(x.sum(1, 2, 3))\n\n\nPrzeciążanie operatora w klasie\nKod nr 5\nclass Student:\n\n    def __init__(self, m1, m2):\n        self.m1 = m1\n        self.m2 = m2\n\n    def __add__(self, other):\n        m1 = self.m1 + other.m1\n        m2 = self.m2 + other.m2\n        s3 = Student(m1, m2)\n        return s3\n\n\ns1 = Student(58, 59)\ns2 = Student(60, 65)\ns3 = s1 + s2\nprint(s3.m1)\nTzw “magiczne metody”\n\nhttps://docs.python.org/3/reference/datamodel.html#emulating-numeric-types\nhttps://www.python-course.eu/python3_magic_methods.php\n\n\n\nPolimorfizm metod w różnych klasach (bez związku między klasami)\nKod nr 6\nclass Cat:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    def info(self):\n        print(f\"I am a cat. My name is {self.name}. I am {self.age} years old.\")\n\n    def make_sound(self):\n        print(\"Meow\")\n\n\nclass Dog:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    def info(self):\n        print(f\"I am a dog. My name is {self.name}. I am {self.age} years old.\")\n\n    def make_sound(self):\n        print(\"Bark\")\n\n\ncat1 = Cat(\"Kitty\", 2.5)\ndog1 = Dog(\"Fluffy\", 4)\nanimals = [cat1, dog1]\n\nfor animal in animals:\n    animal.make_sound()\n    animal.info()\n    animal.make_sound()\n\n\nPolimorfizm przy dziedziczeniu (przesłanianie metod)\nKod nr 7\nfrom math import pi\n\n\nclass Shape:\n    def __init__(self, name):\n        self.name = name\n\n    def area(self):\n        pass\n\n    def fact(self):\n        return \"I am a two-dimensional shape.\"\n\n    def __str__(self):\n        return self.name\n\n\nclass Square(Shape):\n    def __init__(self, length):\n        super().__init__(\"Square\")\n        self.length = length\n\n    def area(self):\n        return self.length ** 2\n\n    def fact(self):\n        return \"Squares have each angle equal to 90 degrees.\"\n\n\nclass Circle(Shape):\n    def __init__(self, radius):\n        super().__init__(\"Circle\")\n        self.radius = radius\n\n    def area(self):\n        return pi * self.radius ** 2\n\n\nfigures = [Shape(\"Nazwa\"), Circle(2), Square(3)]\nfor f in figures:\n    print(f.area())"
+  },
+  {
+    "objectID": "po12.html",
+    "href": "po12.html",
+    "title": "Dzień 3 - Statyczność",
+    "section": "",
+    "text": "“Statyczne pola w klasie”\nKod nr 1\nimport math\n\n\nclass Point:\n    name = \"W\"\n\n    def __init__(self, a, b):\n        self.x = a\n        self.y = b\n\n    def move(self, mx, my):\n        self.x += mx\n        self.y += my\n\n    def dist(self, other=None):\n        if other is None:\n            return math.sqrt(self.x ** 2 + self.y ** 2)\n        else:\n            return math.sqrt((self.x - other.x) ** 2 + (self.y - other.y) ** 2)\n\n\np1 = Point(2, 2)\np1.name = \"A\"\np1.move(-1, 1)\np2 = Point(3, 4)\np3 = Point(2, 0)\np1.name = \"R\"\nPoint.name = \"T\"\np3.name = \"g\"\nPoint.name = \"v\"\n\n\nStatyczne metody\nKod nr 2\nfrom datetime import date\n\n\nclass Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    @classmethod\n    def frombirthyear(cls, name, year):\n        return cls(name, date.today().year - year)\n\n    @staticmethod\n    def isadult(age):\n        return age > 18\n\n\nperson1 = Person('mayank', 21)\nperson2 = Person.frombirthyear('mayank', 1996)\n\nprint(person1.age)\nprint(person2.age)\n\nprint(Person.isadult(22))\nKod nr 3:\nclass Student:\n    name = 'unknown'  # class attribute\n\n    def __init__(self):\n        self.age = 20  # instance attribute\n\n    @classmethod\n    def tostring(cls):\n        print('Student Class Attributes: name=', cls.name)\n\n\nStudent.tostring()\ns1 = Student()\ns1.tostring()\ns1.name = \"Tom\"\ns1.tostring()\nĆwiczenie Na bazie wcześniej stworzonej klasy Produkt dodaj w niej metodę statyczną check_quality, przyjmującą jeden argument – obiektu typu Product. Metoda ma sprawdzić, czy jakość jest większa niż 5 – jeśli tak, to zwiększa cenę o 10% W przeciwnym wypadku, nie robi nic."
+  },
+  {
+    "objectID": "po13.html",
+    "href": "po13.html",
+    "title": "Dzień 3 - Sortowanie",
+    "section": "",
+    "text": "Kod nr 1\nfrom operator import attrgetter\n\n\nclass Employee:\n\n    def __init__(self, name, dept):\n        self.name = name\n        self.dept = dept\n\n    def __repr__(self):\n        return '{' + self.name + ', ' + self.dept + '}'\n\n\nworkers = [\n    Employee('James', 'Telecom'),\n    Employee('Robert', 'Construction'),\n    Employee('James', 'Finance')\n]\n\n# sort by `name` and `dept` attribute\nworkers.sort(key=attrgetter('name', 'dept'))\n\n# [{James, Finance}, {James, Telecom}, {Robert, Construction}]\nprint(workers)\nKod nr 3\nclass Person(object):\n\n    def __init__(self, firstname, lastname):\n        self.first = firstname\n        self.last = lastname\n\n    def __eq__(self, other):\n        return ((self.last, self.first) == (other.last, other.first))\n\n    def __ne__(self, other):\n        return ((self.last, self.first) != (other.last, other.first))\n\n    def __lt__(self, other):\n        return ((self.last, self.first) < (other.last, other.first))\n\n    def __le__(self, other):\n        return ((self.last, self.first) <= (other.last, other.first))\n\n    def __gt__(self, other):\n        return ((self.last, self.first) > (other.last, other.first))\n\n    def __ge__(self, other):\n        return ((self.last, self.first) >= (other.last, other.first))\n\n    def __repr__(self):\n        return f\"{self.first} {self.last}\"\n\n\n\nOperator\nMetoda\n\n\n\n\n==\n__eq__\n\n\n!=\n__ne__\n\n\n<\n__lt__\n\n\n<=\n__le__\n\n\n>\n__gt__\n\n\n>=\n__ge__\n\n\n\nĆwiczenia. Stwórz listę osób, książek, filmów itp i posortują ją różnymi sposobami.\nKod nr 3:\nclass Person(object):\n\n    def __init__(self, firstname, lastname):\n        self.first = firstname\n        self.last = lastname\n\n    def __lt__(self, other):\n        if isinstance(other, Person):\n            return (self.last, self.first) < (other.last, other.first)\n        elif isinstance(other, int):\n            return len(self.last) < other\n\n    def __repr__(self):\n        return f\"{self.first} {self.last}\"\n\n\np1 = Person(\"Anna\", \"Nowak\")\np2 = Person(\"Anna\", \"Kowalska\")\nprint(p1 < 4)\nprint(p2 < p1)\nĆwiczenie 1. Stwórz klasę Book z polami author, title, price. Stwórz listę 10 książek i posortuj je po długości tytułu (od najkrótszego do najdłuższego).\nĆwiczenie 2. Wykorzystaj kod https://gist.github.com/pjastr/daaeb8158c99d58896707676ab180b1e i dodaj do klasy bazowej metodę __lt__. Następnie stwórz listę elementów różnych typów i ją posortuj. Wyświetl listę po sortowaniu.\nWskazówka: w razie potrzeby zamień funkcję __str__ na __repr__."
+  },
+  {
+    "objectID": "po14.html",
+    "href": "po14.html",
+    "title": "Dzień 3 - Obsługa błędów",
+    "section": "",
+    "text": "Dokumentacja https://docs.python.org/3/tutorial/errors.html\nKodn nr 1\n10 * (1/0)\n4 + spam*3\n'2' + 2\nKod nr 2\nwhile True:\n    try:\n        x = int(input(\"Please enter a number: \"))\n        break\n    except ValueError:\n        print(\"Oops!  That was no valid number.  Try again...\")\n\n\nprint(\"number\", x)\nKod nr 3\ntry:\n    raise Exception('spam', 'eggs')\nexcept Exception as inst:\n    print(type(inst))    # the exception instance\n    print(inst.args)     # arguments stored in .args\n    print(inst)          # __str__ allows args to be printed directly,\n                         # but may be overridden in exception subclasses\n    x, y = inst.args     # unpack args\n    print('x =', x)\n    print('y =', y)\nKod nr 4\nclass B(Exception):\n    pass\n\nclass C(B):\n    pass\n\nclass D(C):\n    pass\n\nfor cls in [B, C, D]:\n    try:\n        raise cls()\n    except D:\n        print(\"D\")\n    except C:\n        print(\"C\")\n    except B:\n        print(\"B\")\nKod nr 5\ndef this_fails():\n    x = 1/0\n\ntry:\n    this_fails()\nexcept ZeroDivisionError as err:\n    print('Handling run-time error:', err)\nKod nr 6\ntry:\n    raise NameError('HiThere')\nexcept NameError:\n    print('An exception flew by!')\n    raise\nKod nr 7\ntry:\n    raise KeyboardInterrupt\nfinally:\n    print('Goodbye, world!')\nKod nr 8\ndef divide(x, y):\n    try:\n        result = x / y\n    except ZeroDivisionError:\n        print(\"division by zero!\")\n    else:\n        print(\"result is\", result)\n    finally:\n        print(\"executing finally clause\")\n\n\ndivide(2, 1)\ndivide(2, 0)\ndivide(\"2\", \"1\")\nĆwiczenie. Stwórz klasę Calculator i dodaj w niej kilka metod (bez __) symulujących operacje arytmetyczne. Zabezpiecz działanie przed wykrzucaniem błędów."
+  },
+  {
+    "objectID": "po15.html",
+    "href": "po15.html",
+    "title": "Dzień 3 - Emulacja typów numerycznych",
+    "section": "",
+    "text": "https://docs.python.org/3/reference/datamodel.html#emulating-numeric-types\n\negzemplarz + innyobiekt uruchamia metodę __add__\negzemplarz + egzemplarz uruchamia metodę __add__\ninnyobiekt + egzemplarz uruchamia metodę __radd__\n\nKod nr 11\nclass X:\n    def __init__(self, num):\n        self.num = num\n\n\nclass Y:\n    def __init__(self, num):\n        self.num = num\n\n    def __radd__(self, other_obj):\n        return Y(self.num + other_obj.num)\n\n    def __str__(self):\n        return str(self.num)\n\n\nx = X(2)\ny = Y(3)\nprint(x + y)\nprint(y + x)\nKod nr 12\nclass Vector:\n    def __init__(self, values):\n        self.values = values\n\n    def __add__(self, other):\n        if isinstance(other, Vector):\n            # Vector-vector addition\n            return Vector([a + b for a, b in zip(self.values, other.values)])\n        if type(other) in (int, float):\n            # Vector-scalar addition\n            return Vector([a + other for a in self.values])\n        return NotImplemented\n\n\nv1 = Vector([1, 2, 3])\nv2 = v1 + 2  # Creates the vector [3, 4, 5]\nv1 = Vector([1, 2, 3])\nv2 = 2 + v1  # Raises an error\nKod nr 13\nclass Vector:\n    def __init__(self, values):\n        self.values = values\n\n    def __add__(self, other):\n        if isinstance(other, Vector):\n            # Vector-vector addition\n            return Vector([a + b for a, b in zip(self.values, other.values)])\n        if type(other) in (int, float):\n            # Vector-scalar addition\n            return Vector([a + other for a in self.values])\n        return NotImplemented\n\n    def __radd__(self, other):\n        if type(other) in (int, float):\n            return Vector([a + other for a in self.values])\n        return NotImplemented\n\n\nv1 = Vector([1, 2, 3])\nv2 = v1 + 2  # Creates the vector [3, 4, 5]\nv1 = Vector([1, 2, 3])\nv2 = 2 + v1  # Raises an error"
+  },
+  {
+    "objectID": "po16.html",
+    "href": "po16.html",
+    "title": "Więcej metod magicznych",
+    "section": "",
+    "text": "https://docs.python.org/3/reference/datamodel.html\n__getitem__ daje dostęp do odczytu równoważny obj[i] i obj.__getitem__(i)\n__setitem__ - dodaje możliwość zapisu zwartości, równoważnie s1.__setitem__(0,'hi') oraz s1[0]='hi'\nKod nr 5\nclass Building(object):\n    def __init__(self, floors):\n        self._floors = [None] * floors\n    def occupy(self, floor_number, data):\n        self._floors[floor_number] = data\n    def get_floor_data(self, floor_number):\n        return self._floors[floor_number]\nbuilding1 = Building(4)  # Construct a building with 4 floors\nbuilding1.occupy(0, 'Reception')\nbuilding1.occupy(1, 'ABC Corp')\nbuilding1.occupy(2, 'DEF Inc')\nprint(building1.get_floor_data(2))\nKod nr 6\nclass Building(object):\n    def __init__(self, floors):\n        self._floors = [None] * floors\n    def __setitem__(self, floor_number, data):\n        self._floors[floor_number] = data\n    def __getitem__(self, floor_number):\n        return self._floors[floor_number]\nbuilding1 = Building(4)  # Construct a building with 4 floors\nbuilding1[0] = 'Reception'\nbuilding1[1] = 'ABC Corp'\nbuilding1[2] = 'DEF Inc'\nprint(building1[2])\nKod nr 7\nclass Test:\n    def __getitem__(self, items):\n        print(type(items), items)\ntest = Test()\ntest[4]\ntest[5:65:5]\ntest['Olsztyn']"
+  },
+  {
+    "objectID": "po2.html",
+    "href": "po2.html",
+    "title": "Dzień 1 - Parę definicji",
+    "section": "",
+    "text": "Klasa – częściowa lub całkowita definicja dla obiektów. Definicja obejmuje dopuszczalny stan obiektów oraz ich zachowania. Obiekt, który został stworzony na podstawie danej klasy nazywany jest jej instancją. Klasy mogą być typami języka programowania - przykładowo, instancja klasy Owoc będzie mieć typ Owoc. Klasy posiadają zarówno interfejs, jak i strukturę. Interfejs opisuje, jak komunikować się z jej instancjami za pośrednictwem metod, zaś struktura definiuje sposób mapowania stanu obiektu na elementarne atrybuty.\nObiekt - jest to struktura zawierająca:\nŹródło: Wikipedia."
+  },
+  {
+    "objectID": "po2.html#założeniafilary-programowania-obiektowego",
+    "href": "po2.html#założeniafilary-programowania-obiektowego",
+    "title": "Dzień 1 - Parę definicji",
+    "section": "Założenia/filary programowania obiektowego",
+    "text": "Założenia/filary programowania obiektowego\n\nAbstrakcja - polega na ukrywaniu lub pomijaniu mało istotnych informacji a skupieniu się na wydobyciu informacji, które są niezmienne i wspólne dla pewnej grupy obiektów.\nHermetyzacja lub inaczej mówiąc enkapsulacja polega na ukrywaniu nieistotnych informacji na temat obiektu w celu zminimalizowania efektów jego modyfikacji oraz na oddzieleniu tego co zawiera i co może zrobić obiekt od tego jak jest zbudowany i jak to robi.\nDziedziczenie pozwala rozszerzać możliwości klas poprzez implementacje osobnych klas rozszerzających. Dzięki dziedziczeniu możemy tworzyć nowe klasy w oparciu o już istniejące, bez potrzeby implementowania tych funkcjonalności, które zostały już zaimplementowane w klasach bazowych.\nPolimorfizm pozwala traktować różnorodne dane w ten sam sposób, w zależności od kontekstu. W trakcie wykonywania programu automatycznie są znajdowane i interpretowane odpowiednie metody w zależności od tego jak chcemy traktować nasze dane."
+  },
+  {
+    "objectID": "po3.html",
+    "href": "po3.html",
+    "title": "Dzień 1 - Pola w klasie",
+    "section": "",
+    "text": "Pola to inaczej zmienne w danej klasie.\nĆwiczenie. Stwórz klasę Point z dwoma polami x i y. Stwórz kilka obiektów w zdefiniowanym typie.\n\nKod nr 1:\nclass Point:\n    x = 4\n    y = 2\n\n\np1 = Point()\np1.x = 3\np1.y = 7\np2 = Point()\nKod nr 2:\nclass Point:\n    pass\n\n\np1 = Point()\np1.x = 3\np1.y = 7\np2 = Point()\n\n\nPokaż/ukryj\n\nĆwiczenie 2. Dla kodu nr 2 sprawdź czy możesz zostać się do pól/składowych obu obiektów.\nĆwiczenie 3. Stwórz klasę Book, dodaj w niej 5 dowolnych pól i poćwicz możliości z analogicznego do powyższych ćwiczeń.\nCzy możemy określić konkretny typ?\nTak, ale to są nowości, mogą być przedmiotem zmian i niebawem rozwijane (ang. type hinting).\nKod nr 3:\nclass Point:\n    x: int = 4\n    y: int = 2\n\n\np1 = Point()\np1.x = 3\np1.y = \"ddd\"\np2 = Point()"
+  },
+  {
+    "objectID": "po4.html",
+    "href": "po4.html",
+    "title": "Dzień 1 - Metody w klasie",
+    "section": "",
+    "text": "Metody definiują zachowanie, umożliwiając im wykonywanie konkretnych zadań.\nCzemu używa się określenie metody, a nie funkcje?\n\nMatematyczna definicja funkcji:\n\nFunkcja – dla danych dwóch zbiorów \\(X\\) i \\(Y\\) przyporządkowanie każdemu elementowi zbioru \\(X\\) dokładnie jednego elementu zbioru \\(Y\\).\n\nMetody mogą być “szerzej rozumiane”. Mamy metody bez parametru (czyli bez \\(X\\)) i metody bez typu zwracanego (void, czyli bez zbioru \\(Y\\)).\n\nInaczej ważniejszy kontekst: metody to funkcje w klasach.\nKod nr 1:\nimport math\n\n\nclass Point:\n    x = 4\n    y = 2\n\n    def reset(self):\n        self.x = 0\n        self.y = 0\n\n    def left(self, move):\n        self.x -= move\n\n    def move(self, mx, my):\n        self.x += mx\n        self.y += my\n\n    def dist(self):\n        return math.sqrt(self.x ** 2 + self.y ** 2)\n\n\np1 = Point()\np1.reset()\nprint(p1.x, p1.y)\nprint(p1.dist())\np1.move(3, 4)\nprint(p1.x, p1.y)\nprint(p1.dist())\nĆwiczenie. Stwórz klasę Liczba. Dodaj w niej pole wartosc i przypisz mu wartość początkową 0. Stwórz metody o nazwach Dodaj i Odejmij, każda z nich ma być z jednym parametrem typu int, ich zadaniem jest odpowiednio powiększenie lub pomniejszenie pola wartosc o podanych parametr. Przetestuj działanie funkcji.\nKod nr 2:\nimport math\n\n\nclass Point:\n    x = 4\n    y = 2\n\n    def reset(self):\n        self.x = 0\n        self.y = 0\n\n    def left(self, move):\n        self.x -= move\n\n    def move(self, mx, my):\n        self.x += mx\n        self.y += my\n\n    def dist(self):\n        return math.sqrt(self.x ** 2 + self.y ** 2)\n\n    def dist2(self, other):\n        return math.sqrt((self.x - other.x) ** 2 + (self.y - other.y) ** 2)\n\n\np1 = Point()\np1.move(-1, 1)\np2 = Point()\nprint(p1.dist())\nprint(p1.dist2(p2))\nprint(p1.dist2(p1))\nJak to zrobić lepiej?\nKod nr 3:\nimport math\n\n\nclass Point:\n    x = 4\n    y = 2\n\n    def reset(self):\n        self.x = 0\n        self.y = 0\n\n    def left(self, move):\n        self.x -= move\n\n    def move(self, mx, my):\n        self.x += mx\n        self.y += my\n\n    def dist(self, other=None):\n        if other is None:\n            return math.sqrt(self.x ** 2 + self.y ** 2)\n        else:\n            return math.sqrt((self.x - other.x) ** 2 + (self.y - other.y) ** 2)\n\n\np1 = Point()\np1.move(-1, 1)\np2 = Point()\nprint(p1.dist())\nprint(p1.dist(p2))\nprint(p1.dist(p1))\nĆwiczenie. Napisz klasę Rectangle z dwoma polami width oraz height. Dodaj w tej klasie dwie metody: jedna zwraca pole a druga zwraca obwód prostokąta. Następnie dodaj metodę wyświetlającą informację o obiekcie np. Szerokość: 20, Wysokość: 30, Pole: 600, Obwód: 100."
+  },
+  {
+    "objectID": "po5.html",
+    "href": "po5.html",
+    "title": "Dzień 1 - Konstruktor",
+    "section": "",
+    "text": "Konstruktor/inicjalizator:\nKod nr 1:\nPomieszajmy to trochę:\nKod nr 2:"
+  },
+  {
+    "objectID": "po5.html#init__-i-__new__",
+    "href": "po5.html#init__-i-__new__",
+    "title": "Dzień 1 - Konstruktor",
+    "section": "__init__ i __new__",
+    "text": "__init__ i __new__\nhttps://pl.wikipedia.org/wiki/Konstruktor_(programowanie_obiektowe)\nKod nr 3\nclass Point:\n    def __new__(cls, *args, **kwargs):\n        print(\"1. Create a new instance of Point.\")\n        return super().__new__(cls)\n\n    def __init__(self, x, y):\n        print(\"2. Initialize the new instance of Point.\")\n        self.x = x\n        self.y = y\n\n    def __repr__(self) -> str:\n        return f\"{type(self).__name__}(x={self.x}, y={self.y})\"\n\n\np = Point(4, 5)\nprint(p)\nĆwiczenie 1. Napisz klasę Trip z atrybutami destination oraz price. Stwórz w niej inicjalizator w dwoma argumentami.\nĆwiczenia 2. 1. Napisz klasę Product. Klasa powinna posiadać atrybuty :\n\nname typu str (pol. nazwa)\nprice typu float (pol. cena)\nquality typu int (pol. jakość)\ntax typu float (pol. podatek)\n\nZaimplementuj inicjalizator z czteroma argumentami (zachowaj kolejność i nazwy jak wyżej). Zadbaj również o to aby inicjalizator w razie podania argumentów liczbowych jako ujemne, to ustawiał je niezależnie na zero. Nazwa musi być napisem – jeśli nie jest, ustaw napis pusty."
+  },
+  {
+    "objectID": "po6.html",
+    "href": "po6.html",
+    "title": "Dzień 2 - Jak opisywać obiekty?",
+    "section": "",
+    "text": "Kod nr 1:\nKod nr 1a:"
+  },
+  {
+    "objectID": "po6.html#formatowanie-stringów",
+    "href": "po6.html#formatowanie-stringów",
+    "title": "Dzień 2 - Jak opisywać obiekty?",
+    "section": "Formatowanie stringów",
+    "text": "Formatowanie stringów\nhttps://realpython.com/python-string-formatting/#1-old-style-string-formatting-operator\n\nstyl printf\nZaczerpnięty z języka C - stare.\nhttps://docs.python.org/3/library/stdtypes.html#old-string-formatting\nKod nr 2:\na = \"abc\"\nstr = \"a to %s\" % a\nprint(str)\nb = 4\nc = 5\nstr2 = \"%d + %d = %d\" % (b, c, b + c)\nprint(str2)\n\n\nstyl format\nhttps://realpython.com/python-formatted-output/\nKod nr 3:\na = \"abc\"\nstr = \"a to {}\".format(a)\nprint(str)\nb = 4.2\nc = 5\nstr2 = \"{0} + {1} = {2}\".format(b, c, b + c)\nprint(str2)\nb = 4.2\nc = 5\nstr2 = \"{0:f} + {1:d} = {2:e}\".format(b, c, b + c)\nprint(str2)\n\n\nf-Strings\nhttps://realpython.com/python-f-strings/#python-f-strings-the-pesky-details\nKod nr 4:\na = \"abc\"\nstr = f\"a to {a}\"\nprint(str)\nb = 4.2\nc = 5\nstr2 = f\"{b} + {c} = {b+c}\"\nprint(str2)\nb = 4.2\nc = 5\nstr2 = f\"{b:f} + {c:d} = {b+c:e}\"\nprint(str2)\nĆwiczenie. Stwórz klasę Godzina i Data w której dodasz metodę __str__ opisującą obiekty w wybranym formacie."
+  },
+  {
+    "objectID": "po6.html#inaczej",
+    "href": "po6.html#inaczej",
+    "title": "Dzień 2 - Jak opisywać obiekty?",
+    "section": "Inaczej?",
+    "text": "Inaczej?\nKod nr 5:\nclass Person:\n    name = \"Jan\"\n\n    def __repr__(self):\n        return \"Nazwa %s\" % (self.name)\n\n\np1 = Person()\np1.name=\"Sylwia\"\nprint(p1)\nJakie są różnice?\nKod nr 6:\nimport datetime\n\nnow = datetime.datetime.now()\nprint(now.__str__())\nprint(now.__repr__())\nKod nr 7:\nclass Person:\n\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    def __str__(self):\n        return f\"{self.name} {self.age}\"\n\n    def __repr__(self):\n        return f\"{self.__class__.__name__} {self.name} {self.age}\"\n\n\npeople = [Person(\"Jan\", 30), Person(\"Katarzyna\", 40)]\nprint(people)\nĆwiczenia: Stwórz klasę Book z polami title, author, publisher, year. Dodaj w klasie inicjalizator oraz metodę zwracającą napis z reprezentacją obiektu. Stwórz listę 4 obiektów w typie Book a następnie wyświetl zawartość listy używając samej funkcji print."
+  },
+  {
+    "objectID": "po7.html",
+    "href": "po7.html",
+    "title": "Dzień 2 - Prywatne pola i metody?",
+    "section": "",
+    "text": "Kod nr 1:\nclass Person:\n    __name = \"Jan\"\n\n\np1 = Person()\n# print(p1.__name)\nprint(p1._Person__name)\nĆwiczenie. Dla poniższej klasy sprawdź parę obiektów i sprawdź dostępy do składowych.\nKod nr 2:\nclass P:\n    def __init__(self, name, alias):\n        self.name = name  # public\n        self.__alias = alias  # private\n\n    def who(self):\n        print('name  : ', self.name)\n        print('alias : ', self.__alias)\nA co z prywatnymi metodami?\nKod nr 3:\nclass Person:\n    __name = \"Jan\"\n\n    def __get_name(self):\n        return self.__name\n\n\np1 = Person()\n# print(p1.__get_name())\nprint(p1._Person__get_name())\nĆwiczenie2. Dla poniższej klasy sprawdź parę obiektów i sprawdź dostępy do składowych.\nKod nr 4:\nclass P:\n    def __init__(self, name, alias):\n        self.name = name  # public\n        self.__alias = alias  # private\n\n    def who(self):\n        print('name  : ', self.name)\n        print('alias : ', self.__alias)\n\n    def __foo(self):  # private method\n        print('This is private method')\n\n    def foo(self):  # public method\n        print('This is public method')\n        self.__foo()"
+  },
+  {
+    "objectID": "po8.html",
+    "href": "po8.html",
+    "title": "Dzień 2 - Właściwości",
+    "section": "",
+    "text": "Kod nr 1\nclass Point:\n    def __init__(self, x, y):\n        self.__x = x\n        self.__y = y\n\n    def get_x(self):\n        return self.__x\n\n    def set_x(self, value):\n        self.__x = value\n\n    def get_y(self):\n        return self.__y\n\n    def set_y(self, value):\n        self.__y = value\n\n\npoint = Point(12, 5)\nprint(point.get_x())\nprint(point.get_y())\npoint.set_x(42)\nprint(point.get_x())\n# print(point.__x)\nKod nr 2\nclass Point:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\n\npoint = Point(12, 5)\nprint(point.x)\nKod nr 3\nclass Circle:\n    def __init__(self, radius):\n        self.__radius = radius\n\n    def _get_radius(self):\n        print(\"Get radius\")\n        return self.__radius\n\n    def _set_radius(self, value):\n        print(\"Set radius\")\n        self.__radius = value\n\n    def _del_radius(self):\n        print(\"Delete radius\")\n        del self.__radius\n\n    radius = property(\n        fget=_get_radius,\n        fset=_set_radius,\n        fdel=_del_radius,\n        doc=\"The radius property.\"\n    )\n\n\ncircle = Circle(42.0)\nprint(circle.radius)\ncircle.radius = 100.0\nprint(circle.radius)\ndel circle.radius\n# print(circle.radius)\nhelp(circle)\nKod nr 4\nclass Point:\n    def __init__(self, x, y):\n        self.__x = x\n        self.__y = y\n\n    def get_x(self):\n        return self.__x\n\n    def set_x(self, value):\n        self.__x = value\n\n    def get_y(self):\n        return self.__y\n\n    def set_y(self, value):\n        self.__y = value\n\n    x = property(get_x, set_x)\n\n\npoint = Point(12, 5)\nprint(point.get_x())\nprint(point.x)\npoint.x = 22\nprint(point.get_x())\nKod nr 5\nclass Circle:\n    def __init__(self, radius):\n        self.__radius = radius\n\n    @property\n    def radius(self):\n        \"\"\"The radius property.\"\"\"\n        print(\"Get radius\")\n        return self.__radius\n\n    @radius.setter\n    def radius(self, value):\n        print(\"Set radius\")\n        self.__radius = value\n\n    @radius.deleter\n    def radius(self):\n        print(\"Delete radius\")\n        del self.__radius\n\n\ncircle = Circle(42.0)\nprint(circle.radius)\ncircle.radius = 100.0\nprint(circle.radius)\ndel circle.radius\n# print(circle.radius)\nhelp(circle)\nKod nr 6\nclass Point:\n    def __init__(self, x, y):\n        self.__x = x\n        self.__y = y\n\n    @property\n    def x(self):\n        return self.__x\n\n    @property\n    def y(self):\n        return self.__y\n\n\npoint = Point(12, 5)\nprint(point.x)\n# point.x = 3\nKod nr 7\nclass Point:\n    def __init__(self, x, y):\n        self.__x = x\n        self.__y = y\n\n    def set_x(self, value):\n        self.__x = value\n\n    x = property(fset=set_x)\n\n\npoint = Point(12, 5)\n#print(point.x)\npoint.x = 22\nKod nr 8\nclass Circle:\n    def __init__(self, radius):\n        self.__radius = radius\n\n    @property\n    def radius(self):\n        return self.__radius\n\n    @radius.setter\n    def radius(self, value):\n        self.__radius = float(value)\n\n    @property\n    def diameter(self):\n        return self.__radius * 2\n\n    @diameter.setter\n    def diameter(self, value):\n        self.__radius = value / 2\n        \n        \ncircle = Circle(42)\nprint(circle.radius)\nprint(circle.diameter)\ncircle.diameter = 100\nprint(circle.radius)\nprint(circle.diameter)\nW praktyce robimy tak:\nKod nr 9\nclass Product:\n\n    def __init__(self, name):\n        if isinstance(name, str):\n            self.__name = name\n        else:\n            self.__name = \"\"\n\n    @property\n    def name(self):\n        return self.__name\n\n    @name.setter\n    def name(self, value):\n        if isinstance(value, str):\n            self.__name = value\n        else:\n            self.__name = \"\"\n\n\np1 = Product(\"Apple\")\nprint(\"Name:\", p1.name)\np2 = Product(344)\nprint(\"Name:\", p2.name)\nĆwiczenie. Stwórz klasę Book z polami title, author, publisher, year. Dodaj w klasie inicjalizator oraz metodę zwracającą napis z reprezentacją obiektu.\nZapewnij następujące kryteria sprawdzające:\n\npole author i title są napisami - w przeciwnym wypadku ustaw pusty napis \"\".\nrok ma być dodatnią liczbą całkowitą"
+  },
+  {
+    "objectID": "po9.html",
+    "href": "po9.html",
+    "title": "Dzień 2 - Operator przypisania",
+    "section": "",
+    "text": "Przeanalizujmy kilka przykładów:\nKod nr 1:\na = 5\nb = a\nb += 2\nprint(a)\nprint(b)\nKod nr 2:\na = True\nb = a\nb = False\nprint(a)\nprint(b)\nKod nr 3:\na = [2, 3, 4]\nb = a\nprint(a)\nprint(b)\na[1] = -3\nprint(a)\nprint(b)\nb = [6, 7]\nprint(a)\nprint(b)\nDlaczego?\n\nĆwiczenie Zmodyfikuj kod nr 3 zamiejąc wszystkie listy na krotki (tuple). Co się zmieni?\nCo dalej? Przeanalizuj parę kodów:\nKod nr 4:\nx = \"Olsztyn\"\ny = \"Olsztyn\"\nprint(x == y)\nprint(x is y)\nprint(id(x) == id(y))\nKod nr 5:\nx = \"Olsztyn\"\ny = x[:: -1][:: -1]\nprint(x == y)\nprint(x is y)\nprint(id(x) == id(y))\nJak to w przypadku obiektów?\nKod nr 6:\nclass Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n\njack1 = Person('Jack', 23)\njack2 = Person('Jack', 23)\nprint(jack1 == jack2)\nprint(jack1 is jack2)\nKod nr 7:\nclass Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    def __eq__(self, other):\n        return self.name == other.name and self.age == other.age\n\n\njack1 = Person('Jack', 23)\njack2 = Person('Jack', 23)\nprint(jack1 == jack2)\nprint(jack1 is jack2)\nĆwiczenie 2. Stwórz klasę Book z kilkoma z kilkoma polami i konstruktorem ustanawiającym pola. Spróbuj na różne sposoby dodać metodę __eq__."
+  },
+  {
+    "objectID": "sprawyorganizacyjne.html",
+    "href": "sprawyorganizacyjne.html",
+    "title": "Dzień 1 - Sprawy organizacyjne",
+    "section": "",
+    "text": "Liczba godzin: 20 godzin.\nKonsultacje: piotr.jastrzebski@edukacja.uwm.edu.pl\nGithub: nick pjastr"
+  },
+  {
+    "objectID": "sprawyorganizacyjne.html#treści-zajęć",
+    "href": "sprawyorganizacyjne.html#treści-zajęć",
+    "title": "Dzień 1 - Sprawy organizacyjne",
+    "section": "Treści zajęć",
+    "text": "Treści zajęć\n\nVirtualenv,\nprogramowanie obiektowe w Python,\nwyrażenia lambda,\nobsługa wyjątków,\nzaawansowane struktury danych,\nwyrażenia regularne,\ndekoratory,\nprogramowanie współbieżne i wielowątkowe"
+  },
+  {
+    "objectID": "sprawyorganizacyjne.html#forma-i-warunki-weryfikacji-efektów",
+    "href": "sprawyorganizacyjne.html#forma-i-warunki-weryfikacji-efektów",
+    "title": "Dzień 1 - Sprawy organizacyjne",
+    "section": "Forma i warunki weryfikacji efektów",
+    "text": "Forma i warunki weryfikacji efektów\n\nminiprojekt na koniec"
+  },
+  {
+    "objectID": "sprawyorganizacyjne.html#literatura",
+    "href": "sprawyorganizacyjne.html#literatura",
+    "title": "Dzień 1 - Sprawy organizacyjne",
+    "section": "Literatura",
+    "text": "Literatura\n\nPaul Barry, Python. Rusz głową!, wyd. Helion, 2017.\nMark Lutz, Python. Leksykon kieszonkowy, wyd. Helion, 2014.\nBrett Slatkin, Efektywny Python. 59 sposobów na lepszy kod, wyd. Helion, 2015.\nhttps://www.programiz.com/python-programming/polymorphism\nhttps://www.geeksforgeeks.org/polymorphism-in-python/\nhttps://www.geeksforgeeks.org/ways-of-implementing-polymorphism-in-python/?ref=rp\nhttps://www.geeksforgeeks.org/class-method-vs-static-method-python/\nhttps://github.com/david-torres-by/Debugging_Exercises\nhttps://www.techiedelight.com/sort-list-of-objects-by-multiple-attributes-python/\nhttps://portingguide.readthedocs.io/en/latest/comparisons.html\nhttps://www.geeksforgeeks.org/abstract-classes-in-python/\nhttps://towardsdatascience.com/how-to-connect-objects-with-each-other-in-different-situations-with-pythonic-ways-d3aaf4c89553\nhttps://www.p-programowanie.pl/uml/diagramy-klas-uml#zale%C5%BCno%C5%9B%C4%87\nhttps://www.pythonprogramming.in/give-an-example-of-aggregation-in-python.html\nhttps://python-textbok.readthedocs.io/en/1.0/Object_Oriented_Programming.html"
+  }
+]

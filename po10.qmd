@@ -1,0 +1,156 @@
+---
+title: "Dzień 3 - Dziedziczenie"
+format: html
+---
+
+* „Mechanizm”, dzięki któremu jedna z klas może posiąść cechy innej klasy.
+* Klasa bazowa – klasa, z której jest dziedziczone
+* Klasa potomna/pochodna – klasa, która dziedziczy
+
+
+**Po co jest dziedziczenie?**
+
+* Klasy potomne mogą współdzielić zachowania klas potomnych.
+* Możemy rozszerzyć klasy bez powielania kodu.
+* Uwypukla wspólne cechy (wspiera abstrakcję).
+
+Kod nr 1:
+```python
+class Person:
+
+    def __init__(self, name):
+        self.name = name
+
+    def get_name(self):
+        return self.name
+
+    def is_employee(self):
+        return False
+
+
+class Employee(Person):
+
+    def is_employee(self):
+        return True
+
+
+emp = Person("Bartek")
+print(emp.get_name(), emp.is_employee())
+
+emp = Employee("Sylwia")
+print(emp.get_name(), emp.is_employee())
+
+```
+
+Klasa `object` jest bazowa dla wszystkich obiektów.
+
+Kod nr 2:
+```python
+class Person(object):
+
+    def __init__(self, name):
+        self.name = name
+
+    def get_name(self):
+        return self.name
+
+    def is_employee(self):
+        return False
+
+
+class Employee(Person):
+
+    def is_employee(self):
+        return True
+
+
+emp = Person("Bartek")
+print(emp.get_name(), emp.is_employee())
+
+emp = Employee("Sylwia")
+print(emp.get_name(), emp.is_employee())
+
+```
+
+Jak zrobić konstruktor w klasie pochodnej?
+
+Kod nr 3:
+```python
+class Person:
+    def __init__(self, fname, lname):
+        self.firstname = fname
+        self.lastname = lname
+
+    def printname(self):
+        print(self.firstname, self.lastname)
+
+
+class Student(Person):
+    def __init__(self, fname, lname):
+        Person.__init__(self, fname, lname)
+
+```
+
+Kod nr 4:
+```python
+class Person:
+    def __init__(self, fname, lname):
+        self.firstname = fname
+        self.lastname = lname
+
+    def printname(self):
+        print(self.firstname, self.lastname)
+
+
+class Student(Person):
+    def __init__(self, fname, lname):
+        super().__init__(fname, lname)
+
+```
+
+Kod nr 5:
+```python
+class Person:
+    def __init__(self, fname, lname):
+        self.firstname = fname
+        self.lastname = lname
+
+    def printname(self):
+        print(self.firstname, self.lastname)
+
+
+class Student(Person):
+    def __init__(self, fname, lname, year):
+        super().__init__(fname, lname)
+        self.graduationyear = year
+
+    def welcome(self):
+        print("Welcome", self.firstname, self.lastname, "to the class of", self.graduationyear)
+
+```
+
+**Ćwiczenie1.** Dodaj do powyższych klas więcej pól i metod i poćwicz ich wywoływanie.
+
+**Ćwiczenia2.** Wykonaj poniższe czynności:
+
+A. Napisz klasę `Product`. Klasa powinna posiadać prywatne atrybuty instancyjne:
+
+1.	`name` typu `str` (pol. nazwa)
+2.	`price` typu `float` (pol. cena)
+3.	`quality` typu `int` (pol. jakość)
+4.	`tax` typu `float` (pol. podatek)
+
+B. Stwórz inicjalizator z czterema argumentami (zachowaj kolejność i nazwy jak wcześniejszym punkcie). Zadbaj również o to aby inicjalizator w razie podania argumentów liczbowych jako ujemne, to ustawiał je niezależnie na zero. Nazwa musi być napisem – jeśli nie jest, ustaw napis pusty (`''`).
+
+C. Napisz metodę zwracają opis obiektu.
+
+D. Zaimplementuj klasę `Book` dziedziczącą po klasie `Product`. Klasa ta powinna posiadać atrybuty instancyjne prywatne:
+
+1.	`authors` jako lista napisów (pol. autorzy).
+2.	`title` typu `str` (pol. tytuł)
+
+E. Rozszerz inicjalizator w klasie `Book` biorąc odpowiednio wszystkie atrybuty z klasy bazowej i pochodnej. Atrybut `authors`  musi być niepustą listą – jeśli nie jest, dodaj tam napis `'Adam Mickiewicz'`. Atrybut `tax` ustaw jako zero niezależnie od przekazanego argumentu.
+
+F. Napisz metodę zwracają opis obiektu w klasie `Book`.
+
+G. Stwórz po dwa obiekty w powyższych typach.

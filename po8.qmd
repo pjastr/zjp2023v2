@@ -1,0 +1,268 @@
+---
+title: "Dzień 2 - Właściwości"
+format: html
+---
+
+
+Kod nr 1
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.__x = x
+        self.__y = y
+
+    def get_x(self):
+        return self.__x
+
+    def set_x(self, value):
+        self.__x = value
+
+    def get_y(self):
+        return self.__y
+
+    def set_y(self, value):
+        self.__y = value
+
+
+point = Point(12, 5)
+print(point.get_x())
+print(point.get_y())
+point.set_x(42)
+print(point.get_x())
+# print(point.__x)
+
+```
+
+Kod nr 2
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+
+point = Point(12, 5)
+print(point.x)
+
+```
+
+Kod nr 3
+
+```python
+class Circle:
+    def __init__(self, radius):
+        self.__radius = radius
+
+    def _get_radius(self):
+        print("Get radius")
+        return self.__radius
+
+    def _set_radius(self, value):
+        print("Set radius")
+        self.__radius = value
+
+    def _del_radius(self):
+        print("Delete radius")
+        del self.__radius
+
+    radius = property(
+        fget=_get_radius,
+        fset=_set_radius,
+        fdel=_del_radius,
+        doc="The radius property."
+    )
+
+
+circle = Circle(42.0)
+print(circle.radius)
+circle.radius = 100.0
+print(circle.radius)
+del circle.radius
+# print(circle.radius)
+help(circle)
+
+```
+
+Kod nr 4
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.__x = x
+        self.__y = y
+
+    def get_x(self):
+        return self.__x
+
+    def set_x(self, value):
+        self.__x = value
+
+    def get_y(self):
+        return self.__y
+
+    def set_y(self, value):
+        self.__y = value
+
+    x = property(get_x, set_x)
+
+
+point = Point(12, 5)
+print(point.get_x())
+print(point.x)
+point.x = 22
+print(point.get_x())
+
+```
+
+Kod nr 5
+
+```python
+class Circle:
+    def __init__(self, radius):
+        self.__radius = radius
+
+    @property
+    def radius(self):
+        """The radius property."""
+        print("Get radius")
+        return self.__radius
+
+    @radius.setter
+    def radius(self, value):
+        print("Set radius")
+        self.__radius = value
+
+    @radius.deleter
+    def radius(self):
+        print("Delete radius")
+        del self.__radius
+
+
+circle = Circle(42.0)
+print(circle.radius)
+circle.radius = 100.0
+print(circle.radius)
+del circle.radius
+# print(circle.radius)
+help(circle)
+
+```
+
+Kod nr 6
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.__x = x
+        self.__y = y
+
+    @property
+    def x(self):
+        return self.__x
+
+    @property
+    def y(self):
+        return self.__y
+
+
+point = Point(12, 5)
+print(point.x)
+# point.x = 3
+
+```
+
+Kod nr 7
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.__x = x
+        self.__y = y
+
+    def set_x(self, value):
+        self.__x = value
+
+    x = property(fset=set_x)
+
+
+point = Point(12, 5)
+#print(point.x)
+point.x = 22
+
+```
+
+
+Kod nr 8
+
+```python
+class Circle:
+    def __init__(self, radius):
+        self.__radius = radius
+
+    @property
+    def radius(self):
+        return self.__radius
+
+    @radius.setter
+    def radius(self, value):
+        self.__radius = float(value)
+
+    @property
+    def diameter(self):
+        return self.__radius * 2
+
+    @diameter.setter
+    def diameter(self, value):
+        self.__radius = value / 2
+        
+        
+circle = Circle(42)
+print(circle.radius)
+print(circle.diameter)
+circle.diameter = 100
+print(circle.radius)
+print(circle.diameter)
+
+```
+
+W praktyce robimy tak:
+
+Kod nr 9
+
+```python
+class Product:
+
+    def __init__(self, name):
+        if isinstance(name, str):
+            self.__name = name
+        else:
+            self.__name = ""
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, value):
+        if isinstance(value, str):
+            self.__name = value
+        else:
+            self.__name = ""
+
+
+p1 = Product("Apple")
+print("Name:", p1.name)
+p2 = Product(344)
+print("Name:", p2.name)
+
+```
+
+**Ćwiczenie.** Stwórz klasę `Book` z polami `title`, `author`, `publisher`, `year`. Dodaj w klasie inicjalizator oraz metodę zwracającą napis z reprezentacją obiektu.
+
+Zapewnij następujące kryteria sprawdzające:
+
+* pole `author` i `title` są napisami - w przeciwnym wypadku ustaw pusty napis `""`.
+* rok ma być dodatnią liczbą całkowitą
+

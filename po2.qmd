@@ -1,0 +1,23 @@
+---
+title: "Dzień 1 - Parę definicji"
+format: html
+---
+
+**Klasa** – częściowa lub całkowita definicja dla obiektów. Definicja obejmuje dopuszczalny stan obiektów oraz ich zachowania. Obiekt, który został stworzony na podstawie danej klasy nazywany jest jej instancją. Klasy mogą być typami języka programowania - przykładowo, instancja klasy Owoc będzie mieć typ Owoc. Klasy posiadają zarówno interfejs, jak i strukturę. Interfejs opisuje, jak komunikować się z jej instancjami za pośrednictwem metod, zaś struktura definiuje sposób mapowania stanu obiektu na elementarne atrybuty.
+
+**Obiekt** - jest to struktura zawierająca:
+
+* dane,
+* metody, czyli funkcje służące do wykonywania na tych danych określonych zadań.
+
+Źródło: Wikipedia.
+
+## Założenia/filary programowania obiektowego
+
+* Abstrakcja - polega na ukrywaniu lub pomijaniu mało istotnych informacji a skupieniu się na wydobyciu informacji, które są niezmienne i wspólne dla pewnej grupy obiektów. 
+
+* Hermetyzacja lub inaczej mówiąc enkapsulacja polega na ukrywaniu nieistotnych informacji na temat obiektu w celu zminimalizowania efektów jego modyfikacji oraz na oddzieleniu tego co zawiera i co może zrobić obiekt od tego jak jest zbudowany i jak to robi.
+
+* Dziedziczenie pozwala rozszerzać możliwości klas poprzez implementacje osobnych klas rozszerzających. Dzięki dziedziczeniu możemy tworzyć nowe klasy w oparciu o już istniejące, bez potrzeby implementowania tych funkcjonalności, które zostały już zaimplementowane w klasach bazowych.
+
+* Polimorfizm pozwala traktować różnorodne dane w ten sam sposób, w zależności od kontekstu. W trakcie wykonywania programu automatycznie są znajdowane i interpretowane odpowiednie metody w zależności od tego jak chcemy traktować nasze dane.

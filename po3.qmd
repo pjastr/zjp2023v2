@@ -1,0 +1,70 @@
+---
+title: "Dzień 1 - Pola w klasie"
+format: html
+---
+
+
+Pola to inaczej zmienne w danej klasie.
+
+**Ćwiczenie.** Stwórz klasę `Point` z dwoma polami `x` i `y`. Stwórz kilka obiektów w zdefiniowanym typie.
+
+<div id="spoiler" style="display:none">
+
+Kod nr 1:
+```python
+class Point:
+    x = 4
+    y = 2
+
+
+p1 = Point()
+p1.x = 3
+p1.y = 7
+p2 = Point()
+
+```
+
+Kod nr 2:
+```python
+class Point:
+    pass
+
+
+p1 = Point()
+p1.x = 3
+p1.y = 7
+p2 = Point()
+
+```
+
+</div>
+
+<button title="Kliknij, by zobaczyć odpowiedź" type="button"
+   onclick="if(document.getElementById('spoiler') .style.display=='none')
+              {document.getElementById('spoiler') .style.display=''}
+            else{document.getElementById('spoiler') .style.display='none'}">
+  Pokaż/ukryj
+</button>
+
+**Ćwiczenie 2.** Dla kodu nr 2 sprawdź czy możesz zostać się do pól/składowych obu obiektów.
+
+**Ćwiczenie 3.** Stwórz klasę `Book`, dodaj w niej 5 dowolnych pól i poćwicz możliości z analogicznego do powyższych ćwiczeń.
+
+**Czy możemy określić konkretny typ?**
+
+Tak, ale to są nowości, mogą być przedmiotem zmian i niebawem rozwijane (ang. type hinting).
+
+Kod nr 3:
+```python
+class Point:
+    x: int = 4
+    y: int = 2
+
+
+p1 = Point()
+p1.x = 3
+p1.y = "ddd"
+p2 = Point()
+
+```
+

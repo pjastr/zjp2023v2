@@ -1,0 +1,96 @@
+---
+title: "Dzień 3 - Statyczność"
+format: html
+---
+
+### "Statyczne pola w klasie"
+
+Kod nr 1
+```python
+import math
+
+
+class Point:
+    name = "W"
+
+    def __init__(self, a, b):
+        self.x = a
+        self.y = b
+
+    def move(self, mx, my):
+        self.x += mx
+        self.y += my
+
+    def dist(self, other=None):
+        if other is None:
+            return math.sqrt(self.x ** 2 + self.y ** 2)
+        else:
+            return math.sqrt((self.x - other.x) ** 2 + (self.y - other.y) ** 2)
+
+
+p1 = Point(2, 2)
+p1.name = "A"
+p1.move(-1, 1)
+p2 = Point(3, 4)
+p3 = Point(2, 0)
+p1.name = "R"
+Point.name = "T"
+p3.name = "g"
+Point.name = "v"
+```
+
+### Statyczne metody
+
+Kod nr 2
+```python
+from datetime import date
+
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    @classmethod
+    def frombirthyear(cls, name, year):
+        return cls(name, date.today().year - year)
+
+    @staticmethod
+    def isadult(age):
+        return age > 18
+
+
+person1 = Person('mayank', 21)
+person2 = Person.frombirthyear('mayank', 1996)
+
+print(person1.age)
+print(person2.age)
+
+print(Person.isadult(22))
+```
+
+Kod nr 3:
+
+```python
+class Student:
+    name = 'unknown'  # class attribute
+
+    def __init__(self):
+        self.age = 20  # instance attribute
+
+    @classmethod
+    def tostring(cls):
+        print('Student Class Attributes: name=', cls.name)
+
+
+Student.tostring()
+s1 = Student()
+s1.tostring()
+s1.name = "Tom"
+s1.tostring()
+
+```
+
+
+
+**Ćwiczenie** Na bazie wcześniej stworzonej klasy `Produkt` dodaj w niej metodę statyczną `check_quality`, przyjmującą jeden argument – obiektu typu `Product`. Metoda ma sprawdzić, czy jakość jest większa niż 5 – jeśli tak, to zwiększa cenę o 10% W przeciwnym wypadku, nie robi nic.

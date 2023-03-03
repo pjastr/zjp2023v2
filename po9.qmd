@@ -1,0 +1,107 @@
+---
+title: "Dzień 2 - Operator przypisania"
+format: html
+---
+
+Przeanalizujmy kilka przykładów:
+
+Kod nr 1:
+```python
+a = 5
+b = a
+b += 2
+print(a)
+print(b)
+
+```
+
+Kod nr 2:
+```python
+a = True
+b = a
+b = False
+print(a)
+print(b)
+
+```
+
+Kod nr 3:
+```python
+a = [2, 3, 4]
+b = a
+print(a)
+print(b)
+a[1] = -3
+print(a)
+print(b)
+b = [6, 7]
+print(a)
+print(b)
+
+```
+
+Dlaczego?
+
+![](i1.png)
+
+**Ćwiczenie** Zmodyfikuj kod nr 3 zamiejąc wszystkie listy na krotki (`tuple`). Co się zmieni?
+
+Co dalej? Przeanalizuj parę kodów:
+
+Kod nr 4:
+```python
+x = "Olsztyn"
+y = "Olsztyn"
+print(x == y)
+print(x is y)
+print(id(x) == id(y))
+
+```
+
+Kod nr 5:
+```python
+x = "Olsztyn"
+y = x[:: -1][:: -1]
+print(x == y)
+print(x is y)
+print(id(x) == id(y))
+
+```
+
+Jak to w przypadku obiektów?
+
+Kod nr 6:
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+jack1 = Person('Jack', 23)
+jack2 = Person('Jack', 23)
+print(jack1 == jack2)
+print(jack1 is jack2)
+
+```
+
+Kod nr 7:
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __eq__(self, other):
+        return self.name == other.name and self.age == other.age
+
+
+jack1 = Person('Jack', 23)
+jack2 = Person('Jack', 23)
+print(jack1 == jack2)
+print(jack1 is jack2)
+
+```
+
+**Ćwiczenie 2.** Stwórz klasę `Book` z kilkoma z kilkoma polami i konstruktorem ustanawiającym pola. Spróbuj na różne sposoby dodać metodę `__eq__`.
+

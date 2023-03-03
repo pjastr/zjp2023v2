@@ -1,0 +1,147 @@
+---
+title: "Dzień 2 - Jak opisywać obiekty?"
+format: html
+---
+
+Kod nr 1:
+```python
+class Person:
+    name = "Jan"
+
+    def __str__(self):
+        return "Nazwa %s" % (self.name)
+
+
+p1 = Person()
+p1.name="Sylwia"
+print(p1)
+
+```
+
+Kod nr 1a:
+```python
+class Person:
+
+    def __str__(self):
+        return type(self).__name__
+
+
+p1 = Person()
+print(p1)
+
+```
+
+
+## Formatowanie stringów
+
+<https://realpython.com/python-string-formatting/#1-old-style-string-formatting-operator>
+
+### styl `printf`
+
+Zaczerpnięty z języka C - stare.
+
+<https://docs.python.org/3/library/stdtypes.html#old-string-formatting>
+
+Kod nr 2:
+```python
+a = "abc"
+str = "a to %s" % a
+print(str)
+b = 4
+c = 5
+str2 = "%d + %d = %d" % (b, c, b + c)
+print(str2)
+```
+
+### styl `format`
+
+<https://realpython.com/python-formatted-output/>
+
+Kod nr 3:
+```python
+a = "abc"
+str = "a to {}".format(a)
+print(str)
+b = 4.2
+c = 5
+str2 = "{0} + {1} = {2}".format(b, c, b + c)
+print(str2)
+b = 4.2
+c = 5
+str2 = "{0:f} + {1:d} = {2:e}".format(b, c, b + c)
+print(str2)
+
+```
+
+### `f-Strings`
+
+<https://realpython.com/python-f-strings/#python-f-strings-the-pesky-details>
+
+Kod nr 4:
+```python
+a = "abc"
+str = f"a to {a}"
+print(str)
+b = 4.2
+c = 5
+str2 = f"{b} + {c} = {b+c}"
+print(str2)
+b = 4.2
+c = 5
+str2 = f"{b:f} + {c:d} = {b+c:e}"
+print(str2)
+```
+
+**Ćwiczenie.** Stwórz klasę `Godzina` i `Data` w której dodasz metodę `__str__` opisującą obiekty w wybranym formacie.
+
+## Inaczej?
+
+Kod nr 5:
+```python
+class Person:
+    name = "Jan"
+
+    def __repr__(self):
+        return "Nazwa %s" % (self.name)
+
+
+p1 = Person()
+p1.name="Sylwia"
+print(p1)
+
+```
+
+Jakie są różnice?
+
+Kod nr 6:
+```python
+import datetime
+
+now = datetime.datetime.now()
+print(now.__str__())
+print(now.__repr__())
+
+```
+
+Kod nr 7:
+
+```python
+class Person:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __str__(self):
+        return f"{self.name} {self.age}"
+
+    def __repr__(self):
+        return f"{self.__class__.__name__} {self.name} {self.age}"
+
+
+people = [Person("Jan", 30), Person("Katarzyna", 40)]
+print(people)
+
+```
+
+**Ćwiczenia:** Stwórz klasę `Book` z polami `title`, `author`, `publisher`, `year`. Dodaj w klasie inicjalizator oraz metodę zwracającą napis z reprezentacją obiektu. Stwórz listę 4 obiektów w typie `Book` a następnie wyświetl zawartość listy używając samej funkcji `print`.

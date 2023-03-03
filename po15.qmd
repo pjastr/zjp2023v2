@@ -1,0 +1,86 @@
+---
+title: "Dzień 3 - Emulacja typów numerycznych"
+format: html
+---
+
+
+<https://docs.python.org/3/reference/datamodel.html#emulating-numeric-types>
+
+* `egzemplarz + innyobiekt` uruchamia metodę `__add__`
+* `egzemplarz + egzemplarz` uruchamia metodę `__add__`
+* `innyobiekt + egzemplarz` uruchamia metodę `__radd__`
+
+Kod nr 11
+```python
+class X:
+    def __init__(self, num):
+        self.num = num
+
+
+class Y:
+    def __init__(self, num):
+        self.num = num
+
+    def __radd__(self, other_obj):
+        return Y(self.num + other_obj.num)
+
+    def __str__(self):
+        return str(self.num)
+
+
+x = X(2)
+y = Y(3)
+print(x + y)
+print(y + x)
+
+```
+
+Kod nr 12
+```python
+class Vector:
+    def __init__(self, values):
+        self.values = values
+
+    def __add__(self, other):
+        if isinstance(other, Vector):
+            # Vector-vector addition
+            return Vector([a + b for a, b in zip(self.values, other.values)])
+        if type(other) in (int, float):
+            # Vector-scalar addition
+            return Vector([a + other for a in self.values])
+        return NotImplemented
+
+
+v1 = Vector([1, 2, 3])
+v2 = v1 + 2  # Creates the vector [3, 4, 5]
+v1 = Vector([1, 2, 3])
+v2 = 2 + v1  # Raises an error
+
+```
+
+Kod nr 13
+```python
+class Vector:
+    def __init__(self, values):
+        self.values = values
+
+    def __add__(self, other):
+        if isinstance(other, Vector):
+            # Vector-vector addition
+            return Vector([a + b for a, b in zip(self.values, other.values)])
+        if type(other) in (int, float):
+            # Vector-scalar addition
+            return Vector([a + other for a in self.values])
+        return NotImplemented
+
+    def __radd__(self, other):
+        if type(other) in (int, float):
+            return Vector([a + other for a in self.values])
+        return NotImplemented
+
+
+v1 = Vector([1, 2, 3])
+v2 = v1 + 2  # Creates the vector [3, 4, 5]
+v1 = Vector([1, 2, 3])
+v2 = 2 + v1  # Raises an error
+```

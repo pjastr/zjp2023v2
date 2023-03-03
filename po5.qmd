@@ -1,0 +1,116 @@
+---
+title: "Dzień 1 - Konstruktor"
+format: html
+---
+
+Konstruktor/inicjalizator:
+
+* metoda wykonywana zaraz przy tworzeniu instancji obiektu,
+* może zawierać parametry,
+* specjalna nazwa `__init__`
+
+Kod nr 1:
+```python
+import math
+
+
+class Point:
+
+    def __init__(self, a, b):
+        self.x = a
+        self.y = b
+
+    def move(self, mx, my):
+        self.x += mx
+        self.y += my
+
+    def dist(self, other=None):
+        if other is None:
+            return math.sqrt(self.x ** 2 + self.y ** 2)
+        else:
+            return math.sqrt((self.x - other.x) ** 2 + (self.y - other.y) ** 2)
+
+
+p1 = Point(2, 2)
+p1.move(-1, 1)
+p2 = Point(3, 4)
+print(p1.dist())
+print(p1.dist(p2))
+print(p1.dist(p1))
+
+```
+
+Pomieszajmy to trochę:
+
+Kod nr 2:
+```python
+import math
+
+
+class Point:
+    name = "W"
+
+    def __init__(self, a, b):
+        self.x = a
+        self.y = b
+
+    def move(self, mx, my):
+        self.x += mx
+        self.y += my
+
+    def dist(self, other=None):
+        if other is None:
+            return math.sqrt(self.x ** 2 + self.y ** 2)
+        else:
+            return math.sqrt((self.x - other.x) ** 2 + (self.y - other.y) ** 2)
+
+
+p1 = Point(2, 2)
+p1.name = "A"
+p1.move(-1, 1)
+p2 = Point(3, 4)
+p3 = Point(2, 0)
+p1.name = "R"
+Point.name = "T"
+p3.name = "g"
+Point.name = "v"
+
+```
+
+## `__init__` i `__new__`
+
+https://pl.wikipedia.org/wiki/Konstruktor_(programowanie_obiektowe)
+
+Kod nr 3
+
+```python
+class Point:
+    def __new__(cls, *args, **kwargs):
+        print("1. Create a new instance of Point.")
+        return super().__new__(cls)
+
+    def __init__(self, x, y):
+        print("2. Initialize the new instance of Point.")
+        self.x = x
+        self.y = y
+
+    def __repr__(self) -> str:
+        return f"{type(self).__name__}(x={self.x}, y={self.y})"
+
+
+p = Point(4, 5)
+print(p)
+```
+
+
+
+**Ćwiczenie 1.** Napisz klasę `Trip` z atrybutami `destination` oraz `price`. Stwórz w niej inicjalizator w dwoma argumentami.
+
+**Ćwiczenia 2.** 1.	Napisz klasę Product. Klasa powinna posiadać atrybuty :
+
+1.	name typu str (pol. nazwa)
+2.	price typu float (pol. cena)
+3.	quality typu int (pol. jakość)
+4.	tax typu float (pol. podatek)
+
+Zaimplementuj inicjalizator z czteroma argumentami (zachowaj kolejność i nazwy jak wyżej). Zadbaj również o to aby inicjalizator w razie podania argumentów liczbowych jako ujemne, to ustawiał je niezależnie na zero. Nazwa musi być napisem – jeśli nie jest, ustaw napis pusty.

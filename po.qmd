@@ -1,0 +1,119 @@
+---
+title: "Dzień 1 - Programowanie obiektowe"
+format: html
+---
+
+## Python
+
+Wszystko jest obiektem -?
+
+```python
+a = 5
+b = a
+b += 2
+print(a)
+print(b)
+```
+---
+
+```python
+a = [2, 3, 4]
+b = a
+print(a)
+print(b)
+a[1] = -3
+print(a)
+print(b)
+b = [6, 7]
+print(a)
+print(b)
+```
+
+
+
+## Paradygmat obiektowy - po co jest?
+
+* Jeśli chcemy zbudować 5 identycznych domów, nie potrzeba nam 5 projektów.
+* Jeśli chcemy wyprodukować 4 samochody, nie potrzebujemy oddzielnych projektów.
+* Programowanie obiektowe stara się pogrupować podobne „byty” na pewnym poziomie abstrakcji.
+
+# Klasa, obiekt
+
+## Przykład
+
+* Chcemy napisać program wyliczający wartość rynkową domu w zależności od ilości pokoi, posiadania garażu, ogrodu, ilości pięter, powierzchni, itp…
+
+## Pierwsza klasa - `House`
+
+* Na pewnym poziomie abstrakcji opisuje kawałek rzeczywistości.
+* Zawiera dane opisujące możliwe stany.
+* Zawiera metody opisujące możliwe zachowania.
+* Możemy ją zastosować do wielu budynków.
+
+## Pierwszy obiekt - `johnHouse`
+
+* Konkretny byt.
+* Ma konkretne własności.
+
+Konwencja
+
+* pola - zmienne w klasie
+* metody - funkcje w klasie
+
+Kod nr 1:
+
+```python
+class House:
+    pass
+
+
+johnHouse = House()
+```
+
+Kod nr 2:
+```python
+class House:
+    """The class that describes houses."""
+    pass
+
+
+d = House()
+```
+
+Kod nr 3:
+```python
+class House:
+    """The class that describes houses."""
+
+    area = 100
+
+    def get_price(self):
+        return 3000 * self.area
+
+
+d = House()
+print(d.get_price())
+d2 = House()
+d2.area = 123
+print(d2.get_price())
+
+```
+
+## Po co taka konstrukcja?
+
+* Zmniejszenie luki reprezentacji.
+* Ułatwia podział pracy i współpracę między programistami.
+* Lepsze grupowanie, czytelność kodu.
+* Jak w data science? https://www.kdnuggets.com/2019/08/object-oriented-programming-data-scientists-estimator.html
+
+---
+
+![Lego jako model programowania obiektowego.](lego.jpg)
+
+**Pytanie: czy korzystanie z klas jest obowiązkowe w Pythonie?**
+
+Ćwiczenia:
+
+1. Stwórz klasę `Movie` z polem `title`. Stwórz dwa obiekty w tym typie.
+
+2. Stwórz klasę `Person`, dodaj w niej 5 wybranych przez siebie pól i dwie metody. Stwórz dwa obiekty i poćwicz na nich ustawianie pól i wywoływanie metod.

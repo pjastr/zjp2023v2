@@ -1,0 +1,57 @@
+---
+title: "Dzień 1 - Sprawy organizacyjne"
+format: html
+---
+
+
+* Liczba godzin: 20 godzin.
+* Konsultacje: piotr.jastrzebski@edukacja.uwm.edu.pl
+* Github: nick pjastr
+
+## Treści zajęć
+
+* Virtualenv,
+* programowanie obiektowe w Python,
+* wyrażenia lambda,
+* obsługa wyjątków,
+* zaawansowane struktury danych,
+* wyrażenia regularne,
+* dekoratory,
+* programowanie współbieżne i wielowątkowe
+
+
+## Forma i warunki weryfikacji efektów
+
+* miniprojekt na koniec
+
+## Literatura
+
+1. Paul Barry, Python. Rusz głową!, wyd. Helion, 2017.
+
+2. Mark Lutz, Python. Leksykon kieszonkowy, wyd. Helion, 2014.
+
+3. Brett Slatkin, Efektywny Python. 59 sposobów na lepszy kod, wyd. Helion, 2015.
+
+4. <https://www.programiz.com/python-programming/polymorphism>
+
+5. <https://www.geeksforgeeks.org/polymorphism-in-python/>
+
+6. <https://www.geeksforgeeks.org/ways-of-implementing-polymorphism-in-python/?ref=rp>
+
+7. <https://www.geeksforgeeks.org/class-method-vs-static-method-python/>
+
+8. <https://github.com/david-torres-by/Debugging_Exercises>
+
+9. <https://www.techiedelight.com/sort-list-of-objects-by-multiple-attributes-python/>
+
+10. <https://portingguide.readthedocs.io/en/latest/comparisons.html>
+
+11. <https://www.geeksforgeeks.org/abstract-classes-in-python/>
+
+12. <https://towardsdatascience.com/how-to-connect-objects-with-each-other-in-different-situations-with-pythonic-ways-d3aaf4c89553>
+
+13. <https://www.p-programowanie.pl/uml/diagramy-klas-uml#zale%C5%BCno%C5%9B%C4%87>
+
+14. <https://www.pythonprogramming.in/give-an-example-of-aggregation-in-python.html>
+
+15. <https://python-textbok.readthedocs.io/en/1.0/Object_Oriented_Programming.html>
