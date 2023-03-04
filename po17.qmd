@@ -1,0 +1,211 @@
+---
+title: "Moduły i pakiety"
+format: html
+---
+
+1. Stwórz nowy projekt w Pycharm i w pliku `main.py` wypisz kod:
+
+```python
+print(dir())
+```
+
+2.W tym samym projekcie dodaj plik `mod.py` o zawartości:
+
+```python
+s = "Data science."
+a = [100, 200, 300]
+
+
+def foo(arg):
+    print(f'arg = {arg}')
+
+
+class Foo:
+    pass
+
+```
+
+3. W main dodaj teraz
+
+```python
+import mod
+
+print(dir())
+print(mod.s)
+print(mod.a)
+mod.foo(['abc', 'XYZ', '123'])
+x = mod.Foo()
+print(x)
+```
+
+4. Sprawdź, skąd instalowane są moduły uruchamiając komendę:
+
+```python
+import sys
+
+print(sys.path)
+```
+
+i sprawdźmy gdzie znajduje się nasz moduł:
+
+```python
+print(mod.__file__)
+```
+
+5. Inny sposób import modułu:
+
+```python
+from mod import s, foo
+print(s)
+print(foo('abc'))
+```
+
+```python
+from mod import Foo
+x = Foo()
+print(x)
+```
+
+lub 
+
+```python
+from mod import *
+
+
+print(s)
+print(a)
+print(foo)
+print(Foo)
+```
+
+
+6. Zmodyfikuj kod w pliku `mod.py` i jeszcze raz uruchom skrypt:
+
+```python
+s = "Data science."
+a = [100, 200, 300]
+
+
+def foo(arg):
+    print(f'arg = {arg}')
+
+
+class Foo:
+    pass
+
+
+print(s)
+print(a)
+foo('XYZ')
+x = Foo()
+print(x)
+```
+
+7. Zmodyfikuj ponownie plik `mod.py` i uruchom skrypt:
+
+```python
+s = "Data science."
+a = [100, 200, 300]
+
+
+def foo(arg):
+    print(f'arg = {arg}')
+
+
+class Foo:
+    pass
+
+
+if __name__ == '__main__':
+    print(s)
+    print(a)
+    foo('XYZ')
+    x = Foo()
+    print(x)
+
+```
+
+8. W tym samym projekcie stwórz plik `fact.py` i następnie go:
+
+```python
+def fact(n):
+    return 1 if n == 1 else n * fact(n - 1)
+
+
+if __name__ == '__main__':
+    import sys
+
+    if len(sys.argv) > 1:
+        print(fact(int(sys.argv[1])))
+
+```
+
+komenda z terminala:
+
+```bash
+python fact.py 4
+```
+
+9. Stwórz nowy projekt, stwórz w projekcie folder `pkg` a w nim 4 pliki i poniższej zawartości:
+
+Plik `mod1.py`:
+
+```python
+def foo():
+    print('[mod1] foo()')
+
+
+class Foo:
+    pass
+
+```
+
+Plik `mod2.py`:
+
+```python
+def bar():
+    print('[mod2] bar()')
+
+
+class Bar:
+    pass
+```
+
+Plik `mod3.py`:
+
+```python
+def baz():
+    print('[mod3] baz()')
+
+
+class Baz:
+    pass
+```
+
+Plik `mod4.py`:
+
+```python
+def qux():
+    print('[mod4] qux()')
+
+
+class Qux:
+    pass
+```
+
+10. Poćwicz różne sposoby importu i sprawdź różnice:
+
+```python
+from pkg.mod3 import *
+from pkg import *
+```
+
+11. Dodaj w folderze `pkg` plik `__init__.py` o treści:
+
+```python
+__all__ = ['mod1', 'mod2', 'mod3', 'mod4']
+```
+
+Sprawdź teraz różne sposoby importu.
+
+

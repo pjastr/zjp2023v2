@@ -11,7 +11,7 @@ format: html
 
 `__setitem__` - dodaje możliwość zapisu zwartości, równoważnie `s1.__setitem__(0,'hi')` oraz `s1[0]='hi'`
 
-Kod nr 5
+Kod nr 1
 
 ```python
 class Building(object):
@@ -28,7 +28,7 @@ building1.occupy(2, 'DEF Inc')
 print(building1.get_floor_data(2))
 ```
 
-Kod nr 6
+Kod nr 2
 ```python
 class Building(object):
     def __init__(self, floors):
@@ -44,7 +44,7 @@ building1[2] = 'DEF Inc'
 print(building1[2])
 ```
 
-Kod nr 7
+Kod nr 3
 
 ```python
 class Test:
@@ -55,3 +55,7 @@ test[4]
 test[5:65:5]
 test['Olsztyn']
 ```
+
+**Ćwiczenie.** Stwórz klasę reprezentującą listę z ograniczeniem maksymalnej długości (np. LimitedList). W klasie zaimplementuj metodę __setitem__, która nie pozwoli na ustawienie wartości dla indeksu większego niż maksymalna długość listy, oraz metodę __getitem__, która pozwoli na pobranie wartości elementu listy. Następnie utwórz instancję klasy LimitedList z maksymalną długością 5 i ustaw kilka wartości elementów, a następnie pobierz ich wartości przy użyciu metody __getitem__. Spróbuj dodać element do listy przy użyciu metody __setitem__ dla indeksu większego niż 5 i zobacz, co się stanie.
+
+**Ćwiczenie2.** Stwórz klasę reprezentującą prostokąt (np. Rectangle). W klasie zaimplementuj metodę __setitem__, która pozwoli na ustawienie wartości dla danego atrybutu (np. width lub height), oraz metodę __getitem__, która pozwoli na pobranie wartości dla danego atrybutu. Następnie utwórz instancję klasy Rectangle i ustaw wartości atrybutów, a następnie pobierz ich wartości przy użyciu metody __getitem__.

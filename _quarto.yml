@@ -40,6 +40,8 @@ website:
             file: po11.qmd
           - text: "Statyczność"
             file: po12.qmd
+      - text: "Dzień 4"
+        menu:
           - text: "Sortowanie"
             file: po13.qmd
           - text: "Obsługa błędów"
@@ -48,6 +50,8 @@ website:
             file: po15.qmd
           - text: "Więcej metod magicznych"
             file: po16.qmd
+          - text: "Moduły i pakiety"
+            file: po17.qmd
             
 
     right:

@@ -93,8 +93,8 @@ print(s3.m1)
 
 Tzw "magiczne metody"
 
-* https://docs.python.org/3/reference/datamodel.html#emulating-numeric-types
-* https://www.python-course.eu/python3_magic_methods.php
+* <https://docs.python.org/3/reference/datamodel.html#emulating-numeric-types>
+* <https://www.python-course.eu/python3_magic_methods.php>
 
 
 ### Polimorfizm metod w różnych klasach (bez związku między klasami)

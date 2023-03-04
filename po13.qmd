@@ -73,10 +73,36 @@ class Person(object):
 | `>`        | `__gt__` |
 | `>=`       | `__ge__` |
 
+Kod nr 4:
+```python
+class Person:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __repr__(self):
+        return f"{self.name} {self.age}"
+
+    def __lt__(self, other):
+        # sortowanie wg wieku rosnąco
+        return self.age < other.age
+        # sortowanie wg wieku malejąco
+        # return other.age < self.age
+
+
+people = [Person("Jan", 20), Person("Tomasz", 33), Person("Anna", 15),
+          Person("Anna", 27), Person("Sylwia", 44)]
+print(people)
+people.sort()
+print(people)
+
+```
+
 Ćwiczenia. Stwórz listę osób, książek, filmów itp i posortują ją różnymi sposobami.
 
 
-Kod nr 3:
+Kod nr 5:
 ```python
 class Person(object):
 
@@ -105,6 +131,6 @@ print(p2 < p1)
 
 Ćwiczenie 1. Stwórz klasę `Book` z polami `author`, `title`, `price`. Stwórz listę 10 książek i posortuj je po długości tytułu (od najkrótszego do najdłuższego).
 
-Ćwiczenie 2. Wykorzystaj kod <https://gist.github.com/pjastr/daaeb8158c99d58896707676ab180b1e> i dodaj do klasy bazowej metodę `__lt__`. Następnie stwórz listę elementów różnych typów i ją posortuj. Wyświetl listę po sortowaniu.
+Ćwiczenie 2. Wykorzystaj kod <https://gist.github.com/pjastr/fccff73cd1e2052c374978ae78982e01> i dodaj do klasy bazowej metodę `__lt__`. Następnie stwórz listę elementów różnych typów i ją posortuj. Wyświetl listę po sortowaniu.
 
 Wskazówka: w razie potrzeby zamień funkcję `__str__` na `__repr__`.

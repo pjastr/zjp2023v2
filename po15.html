@@ -218,6 +218,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="dropdown-item" href="./po12.html">
  <span class="dropdown-text">Statyczność</span></a>
   </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-dzień-4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Dzień 4</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-dzień-4">    
         <li>
     <a class="dropdown-item" href="./po13.html">
  <span class="dropdown-text">Sortowanie</span></a>
@@ -233,6 +240,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <li>
     <a class="dropdown-item" href="./po16.html">
  <span class="dropdown-text">Więcej metod magicznych</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./po17.html">
+ <span class="dropdown-text">Moduły i pakiety</span></a>
   </li>  
     </ul>
   </li>
@@ -351,6 +362,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>v2 <span class="op">=</span> v1 <span class="op">+</span> <span class="dv">2</span>  <span class="co"># Creates the vector [3, 4, 5]</span></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>v1 <span class="op">=</span> Vector([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>v2 <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> v1  <span class="co"># Raises an error</span></span></code><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Ćwiczenie:</strong> Stwórz klasę <code>Model</code> z polami: <code>dane</code> (lista elementów liczbowych), <code>wynik</code> (typu <code>float</code>), <code>nazwa</code> (typu <code>str</code>). Dodaj w klasie inicjalizator ustawiający kolejno pola z argumentów. Do klasy dodaj odpowiednie metody magiczne związane z dodawanie tak, aby</p>
+<ul>
+<li>dodawanie dwóch “modeli” ma polegać na dodaniu list <code>dane</code> i stworzeniu nowej, wyniki są dodawane, nazwa powstaje z połączenia obu nazw.</li>
+<li>dodawanie do modelu liczby całkowitej z prawej strony - polega na dodaniu do każdej elementy z <code>dane</code> listy podanej liczby</li>
+<li>dodawanie z lewej strony do liczby całkowitej modelu - polega na dodaniu do wyniku tej liczby.</li>
+</ul>
 
 
 

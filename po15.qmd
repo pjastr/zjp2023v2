@@ -84,3 +84,9 @@ v2 = v1 + 2  # Creates the vector [3, 4, 5]
 v1 = Vector([1, 2, 3])
 v2 = 2 + v1  # Raises an error
 ```
+
+**Ćwiczenie:** Stwórz klasę `Model` z polami: `dane` (lista elementów liczbowych), `wynik` (typu `float`), `nazwa` (typu `str`). Dodaj w klasie inicjalizator ustawiający kolejno pola z argumentów. Do klasy dodaj odpowiednie metody magiczne związane z dodawanie tak, aby
+
+* dodawanie dwóch "modeli" ma polegać na dodaniu list `dane` i stworzeniu nowej, wyniki są dodawane, nazwa powstaje z połączenia obu nazw.
+* dodawanie do modelu liczby całkowitej z prawej strony - polega na dodaniu do każdej elementy z `dane` listy podanej liczby
+* dodawanie z lewej strony do liczby całkowitej modelu - polega na dodaniu do wyniku tej liczby.
