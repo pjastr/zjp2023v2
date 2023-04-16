@@ -3,7 +3,6 @@ title: "Zaawansowany język Python"
 format: html
 ---
 
-
 Strona zawierały materiały przygotowane na przedmiot "Zaawansowany język Python" realizowanego w ramach studiów podyplomowych na WMiI UWM w Olsztynie.
 
 Opracowanie materiałów: dr Piotr Jastrzębski
@@ -16,20 +15,27 @@ Ostatnia aktualizacja: `r Sys.time()`
 
 Kod z zajęć z dnia 28.01.2023:
 
--   DSwPython <https://github.com/pjastr/zjp2801>
+* DSwPython <https://github.com/pjastr/zjp2801>
 
--   DSwP <https://github.com/pjastr/zaj2801>
+* DSwP <https://github.com/pjastr/zaj2801>
 
 Kod z zajęć z dnia 4.02.2023:
 
--   DSwPython <https://github.com/pjastr/zjp402>
+* DSwPython <https://github.com/pjastr/zjp402>
 
--   DSwP <https://github.com/pjastr/zaj402>
+* DSwP <https://github.com/pjastr/zaj402>
 
 Kod z zajęć z dnia 4.03.2023:
 
--   DSwPython <https://github.com/pjastr/zjp403>
+* DSwPython <https://github.com/pjastr/zjp403>
 
--   DSwP <https://github.com/pjastr/zaj402>
+* DSwP <https://github.com/pjastr/zaj403>
+
+Kod z zajęć z dnia 5.03.2023:
+
+* DSwPython <https://github.com/pjastr/zjp503>
+
+* DSwP <https://github.com/pjastr/zaj503>
+
 
 ![](pop.jpg)

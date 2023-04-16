@@ -52,6 +52,8 @@ website:
             file: po16.qmd
           - text: "Moduły i pakiety"
             file: po17.qmd
+      - text: "Mini-projekt"
+        file: miniprojekt.qmd
             
 
     right:
