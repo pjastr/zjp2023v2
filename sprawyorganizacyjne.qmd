@@ -55,3 +55,13 @@ format: html
 14. <https://www.pythonprogramming.in/give-an-example-of-aggregation-in-python.html>
 
 15. <https://python-textbok.readthedocs.io/en/1.0/Object_Oriented_Programming.html>
+
+16. <https://realpython.com/regex-python/>
+
+17. <https://www.geeksforgeeks.org/multithreading-python-set-1/>
+
+18. <https://www.geeksforgeeks.org/multithreading-in-python-set-2-synchronization/>
+
+19. <https://www.geeksforgeeks.org/multiprocessing-python-set-1/>
+
+20. <https://www.geeksforgeeks.org/multiprocessing-python-set-2/>

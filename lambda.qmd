@@ -1,0 +1,138 @@
+---
+title: "Wyrażenia regularne"
+format: html
+---
+
+Skąd nazwa? <https://pl.wikipedia.org/wiki/Rachunek_lambda>
+
+Wyrażenie
+
+``` python
+def identity(x):
+    return x
+```
+
+zapisujemy jako
+
+```         
+lambda x: x
+```
+
+Jeśli uruchomimy to w konsoli, to możemy wywołać
+
+``` python
+_(5)
+```
+
+To tzw. przykład funkcji anonimowej.
+
+
+By uruchomić to też w skrypcie, to potrzebujemy argumentu:
+
+```{python}
+#| echo: true
+print((lambda x: x + 1)(2))
+```
+
+lub
+
+```{python}
+#| echo: true
+add_one = lambda x: x + 1
+print(add_one(2))
+```
+
+
+Możemy również skorzystać z różnych opcji argumentów jak dla funkcji:
+
+```{python}
+#| echo: true
+print((lambda x, y, z: x + y + z)(1, 2, 3))
+print((lambda x, y, z=3: x + y + z)(1, 2))
+print((lambda x, y, z=3: x + y + z)(1, y=2))
+print((lambda *args: sum(args))(1,2,3))
+print((lambda **kwargs: sum(kwargs.values()))(one=1, two=2, three=3))
+print((lambda x, *, y=0, z=0: x + y + z)(1, y=2, z=3))
+```
+
+
+```{python}
+#| echo: true
+string = 'abc'
+print(lambda string: string)
+```
+
+
+
+```{python}
+#| echo: true
+def cube(y):
+    print(f"Finding cube of number:{y}")
+    return y * y * y
+  
+lambda_cube = lambda num: num ** 3
+print("invoking function defined with def keyword:")
+print(cube(30))
+print("invoking lambda function:", lambda_cube(30))
+```
+
+
+Przykłady praktyczne:
+
+```{python}
+#| echo: true
+r = lambda a: a + 15
+print(r(10))
+r = lambda x, y: x * y
+print(r(12, 4))
+```
+
+
+```{python}
+#| echo: true
+subject_marks = [('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)]
+print("Original list of tuples:")
+print(subject_marks)
+subject_marks.sort(key=lambda x: x[1])
+print("\nSorting the List of Tuples:")
+print(subject_marks)
+```
+
+
+```{python}
+#| echo: true
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print("Original list of integers:")
+print(nums)
+print("\nEven numbers from the said list:")
+even_nums = list(filter(lambda x: x % 2 == 0, nums))
+print(even_nums)
+print("\nOdd numbers from the said list:")
+odd_nums = list(filter(lambda x: x % 2 != 0, nums))
+print(odd_nums)
+```
+
+
+```{python}
+#| echo: true
+array_nums1 = [1, 2, 3, 5, 7, 8, 9, 10]
+array_nums2 = [1, 2, 4, 8, 9]
+print("Original arrays:")
+print(array_nums1)
+print(array_nums2)
+result = list(filter(lambda x: x in array_nums1, array_nums2))
+print("\nIntersection of the said arrays: ", result)
+```
+
+
+Typowe "ćwiczenia" do wyrażeń lambda:
+
+1. Napisz funkcję lambda, która zwraca kwadrat liczby całkowitej.
+2. Napisz funkcję lambda, która zwraca sumę dwóch liczb całkowitych.
+3. Napisz funkcję lambda, która zwraca iloczyn dwóch liczb rzeczywistych.
+4. Napisz funkcję lambda, która zwraca największą z trzech liczb całkowitych.
+5. Napisz funkcję lambda, która sprawdza, czy podana liczba jest parzysta.
+6. Napisz funkcję lambda, która sprawdza, czy podana liczba jest podzielna przez 3.
+7. Napisz funkcję lambda, która zwraca długość podanego ciągu znaków.
+8. Napisz funkcję lambda, która zwraca pierwszą literę podanego ciągu znaków.
+9. Napisz funkcję lambda, która zamienia małe litery na duże i duże na małe w podanym ciągu znaków.

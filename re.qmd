@@ -1,0 +1,363 @@
+---
+title: "Wyrażenia regularne"
+format: html
+---
+
+Dokumentacja: <https://docs.python.org/3/library/re.html>
+
+Uwaga: poza f-stringach często się używa tu się tzw. raw strings (surowych napisów) - `r"abc"` (nie są tu interpretowane znaki specjalne jak np. `\n`).
+
+Inspiracja
+
+Kod nr 1:
+```python
+s1 = "Olsztyn"
+result1 = "Ol" in s1
+print(result1)
+result2 = s1.find("Ol")
+print(result2)
+result3 = s1.index("Ol")
+print(result3)
+```
+
+
+Kod nr 2:
+
+```python
+import re
+
+pattern = "Hello"
+text = "Hello, world!"
+
+result = re.search(pattern, text)
+if result:
+    print("Dopasowano.")
+else:
+    print("Brak dopasowania")
+```
+
+Ale:
+
+Kod nr 3:
+
+```python
+import re
+
+match = re.search("Hello", "Hello, world!")
+print(match)
+
+```
+
+Przydatne symbole:
+
+- `.`: Odpowiada dowolnemu znakowi poza nową linią
+- `^`: Odpowiada początkowi łańcucha
+- `$`: Odpowiada końcowi łańcucha
+- `+`: Odpowiada jednej lub większej liczbie powtórzeń poprzedzającego wyrażenia
+- `?`: Odpowiada zero lub jednemu wystąpieniu poprzedzającego wyrażenia
+- `[]`: Odpowiada każdemu z pojedynczych znaków zdefiniowanych w nawiasach kwadratowych
+- `|`: Odpowiada jednemu z dwóch lub więcej wyrażeń
+
+Przydatne metody:
+
+- `re.match()`: sprawdza, czy wzorzec pasuje do początku ciągu znaków.
+- `re.search()`: szuka pierwszego dopasowania wzorca w ciągu znaków.
+- `re.findall()`: zwraca wszystkie niezachodzące na siebie dopasowania wzorca w ciągu znaków.
+- `re.finditer()`: zwraca iterator z dopasowaniami wzorca w ciągu znaków.
+- `re.sub()`: zastępuje dopasowania wzorca podanym ciągiem znaków lub funkcją.
+- `re.group()`: zwraca dopasowany fragment ciągu znaków.
+
+Kod nr 4:
+
+```python
+import re
+
+s = 'Olsztyn'
+print(re.search('s.t', s))
+print(re.search('s.3', s))
+
+```
+
+Wyrażenie regularne `'[0-9][0-9]'` oznacza, że szukamy dwóch kolejnych cyfr.
+
+Kod nr 5:
+
+```python
+import re
+
+s = 'Olsztyn33'
+s2 = '55Olsztyn44'
+s3 = '3test'
+print(re.search('[0-9][0-9]', s))
+print(re.search('[0-9][0-9]', s2))
+print(re.search('[0-9][0-9]', s3))
+```
+
+Wzorzec `'[abc]t'` szuka liter 'a', 'b' lub 'c' bezpośrednio przed literą 't'.
+
+Kod nr 6:
+
+```python
+import re
+
+s = 'Olsztyn33'
+print(re.search('[abc]t', s))
+print(re.search('[abcz]t', s))
+print(re.search('[a-z]t', s))
+print(re.search('[a-z]T', s))
+print(re.search('[A-Z]t', s))
+
+```
+
+Wzorzec `'[0-9a-fA-f]'` ma na celu znalezienie pojedynczego znaku, który jest cyfrą szesnastkową. 
+
+Kod nr 7:
+
+```python
+import re
+
+s = 'ABC'
+print(re.search('[0-9a-fA-f]', s))
+
+```
+
+`[^0-9]` oznacza dopasowanie dowolnego znaku, który NIE jest cyfrą.
+
+
+Kod nr 8:
+
+```python
+import re
+
+print(re.search('[^0-9]', '456Olsztyn22'))
+
+```
+
+Wzorzec `'^Hello'` ma na celu znalezienie ciągu znaków "Hello" tylko wtedy, gdy znajduje się on na początku przeszukiwanego tekstu.
+
+Kod nr 9:
+
+```python
+import re
+
+pattern = "^Hello"
+text1 = "Hello, world!"
+text2 = "Goodbye, world! Hello again!"
+
+match1 = re.search(pattern, text1)
+match2 = re.search(pattern, text2)
+
+if match1:
+    print(f"Dopasowano w '{text1}':", match1.group())
+else:
+    print(f"Brak dopasowania w '{text1}'")
+
+if match2:
+    print(f"Dopasowano w '{text2}':", match2.group())
+else:
+    print(f"Brak dopasowania w '{text2}'")
+
+```
+
+Wzorzec `'abc$'` ma na celu znalezienie ciągu znaków "abc" tylko wtedy, gdy znajduje się on na końcu przeszukiwanego tekstu.
+
+Kod nr 10:
+
+```python
+import re
+
+text = "abc 123"
+match = re.search("abc$", text)
+print(match)
+match2 = re.search("23$", text)
+print(match2)
+
+```
+
+Wzorzec `'a+'` ma na celu znalezienie wystąpień jednego lub więcej znaków 'a' w przeszukiwanym tekście. 
+
+Kod nr 11:
+
+```python
+import re
+
+text = "aaabbbccc"
+text2 = "The car is parked in the aaarea."
+matches = re.findall("a+", text)
+print(matches)
+matches2 = re.findall("a+", text2)
+print(matches2)
+
+Wzorzec `'a?b'` ma na celu znalezienie wystąpień litery `'b'` oraz opcjonalnie litery `'a'` bezpośrednio przed nią w przeszukiwanym tekście.
+
+```
+
+Kod nr 12:
+
+```python
+import re
+
+text = "ab acb b abc"
+matches = re.findall("a?b", text)
+print(matches)
+
+
+```
+
+Kod nr 13:
+
+```python
+import re
+
+pattern = "colou?r"
+text1 = "The American spelling is color."
+text2 = "The British spelling is colour."
+
+match1 = re.search(pattern, text1)
+match2 = re.search(pattern, text2)
+
+if match1:
+    print(f"Dopasowano w '{text1}':", match1.group())
+else:
+    print(f"Brak dopasowania w '{text1}'")
+
+if match2:
+    print(f"Dopasowano w '{text2}':", match2.group())
+else:
+    print(f"Brak dopasowania w '{text2}'")
+
+
+```
+
+Operator `|` w wyrażeniach regularnych w Pythonie oznacza alternatywę, czyli dopasowanie do jednego z dwóch lub więcej wzorców. Na przykład, wyrażenie regularne `cat|dog` znajdzie łańcuchy zawierające słowo `"cat"` lub `"dog"`.
+
+Kod nr 14:
+
+```python
+import re
+
+text = "I have a cat and a dog."
+
+matches = re.findall("cat|dog", text)
+print(matches)
+
+```
+
+Różnice między funkcjami:
+
+Kod nr 15:
+
+```python
+import re
+
+pattern = "world"
+text1 = "Hello, world!"
+text2 = "world of wonders!"
+
+search1 = re.search(pattern, text1)
+match1 = re.match(pattern, text1)
+
+search2 = re.search(pattern, text2)
+match2 = re.match(pattern, text2)
+
+print(f"re.search() w '{text1}':", search1.group() if search1 else "Brak dopasowania")
+print(f"re.match() w '{text1}':", match1.group() if match1 else "Brak dopasowania")
+
+print(f"re.search() w '{text2}':", search2.group() if search2 else "Brak dopasowania")
+print(f"re.match() w '{text2}':", match2.group() if match2 else "Brak dopasowania")
+
+```
+
+`finditer` zwraca iterator:
+
+Kod nr 16:
+
+```python
+import re
+
+text = "Ala ma kota, a kot ma Alę."
+pattern = "Al[aę]"
+
+for match in re.finditer(pattern, text):
+    print("Znaleziono dopasowanie na pozycji", match.start())
+
+```
+
+Przykład użycia `sub`:
+
+Kod nr 17:
+
+```python
+import re
+
+pattern = r"[0-9]+"  # Wzorzec dopasowujący jedną lub więcej cyfr
+replacement = "X"
+text = "Phone numbers: 123-456-7890, 987-654-3210, 111-222-3333"
+
+# Użycie re.sub() do zastąpienia wszystkich wystąpień wzorca tekstem 'X'
+modified_text = re.sub(pattern, replacement, text)
+
+print("Oryginalny tekst:")
+print(text)
+print("Tekst po zmianie:")
+print(modified_text)
+
+```
+
+Wyrażenia regularne a polskie znaki:
+
+Kod nr 18:
+
+```python
+import re
+
+# Przykładowy napis z polskimi znakami
+tekst = "Zażółć gęślą jaźń, ąęśćńź żółć"
+
+# Wzorzec wyrażenia regularnego, który pasuje do polskich znaków
+wzorzec = r"[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]"
+
+# Użycie funkcji finditer() do znalezienia wszystkich wystąpień polskich znaków w napisie
+for match in re.finditer(wzorzec, tekst):
+    print(f"Znak: {match.group()} na pozycji {match.start()}")
+
+# Jeśli chcesz tylko sprawdzić, czy występują polskie znaki, użyj funkcji search()
+if re.search(wzorzec, tekst):
+    print("Napis zawiera polskie znaki")
+else:
+    print("Napis nie zawiera polskich znaków")
+
+```
+
+Kod nr 19:
+
+```python
+import re
+
+def zamien_polskie_znaki(napis):
+    polskie_do_lacinskich = {
+        "ą": "a", "ć": "c", "ę": "e", "ł": "l", "ń": "n", "ó": "o", "ś": "s", "ź": "z", "ż": "z",
+        "Ą": "A", "Ć": "C", "Ę": "E", "Ł": "L", "Ń": "N", "Ó": "O", "Ś": "S", "Ź": "Z", "Ż": "Z"
+    }
+
+    def zamien_znak(znak):
+        return polskie_do_lacinskich.get(znak.group())
+
+    wzorzec = "[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]"
+    napis_zamieniony = re.sub(wzorzec, zamien_znak, napis)
+    return napis_zamieniony
+
+
+tekst = "Zażółć gęślą jaźń, ąęśćńź żółć"
+tekst_zamieniony = zamien_polskie_znaki(tekst)
+print(tekst_zamieniony)
+
+```
+
+Ćwiczenia:
+
+1. Napisz program, który sprawdzi, czy dany napis zawiera tylko cyfry.
+2. Napisz program, który znajdzie wszystkie wystąpienia słowa "python" w tekście.
+3. Napisz program, który zamieni wszystkie wystąpienia liczby 6 na słowo "sześć" w tekście.
+4. Napisz funkcję, która sprawdzi, czy podany napis ma format adresu e-mail (zawiera znak małpy).
+5. Napisz funkcję, która usunie wszystkie znaki interpunkcyjne z podanego napisu (samodzielnie ustal które znaki zaliczasz do tej grupy).

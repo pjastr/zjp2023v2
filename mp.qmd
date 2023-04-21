@@ -1,0 +1,244 @@
+---
+title: "Moduły i pakiety"
+format: html
+---
+
+Moduły i pakiety w Pythonie są tworzone w celu zapewnienia lepszej organizacji, łatwiejszego zarządzania i ponownego użycia kodu w projektach programistycznych. 
+
+Zalety
+
+1. **Modularność:** Moduły i pakiety pozwalają na dzielenie kodu na mniejsze, łatwiejsze do zarządzania fragmenty. Ułatwia to zrozumienie, testowanie i utrzymanie kodu.
+
+2. **Przestrzenie nazw:** Moduły i pakiety zapewniają przestrzenie nazw, które pomagają unikać konfliktów nazw. Przestrzenie nazw to izolowane obszary, w których zmienne, funkcje i klasy mają swoje unikalne nazwy, co pozwala uniknąć przypadkowego nadpisania.
+
+3. **Ponowne użycie kodu:** Moduły i pakiety ułatwiają ponowne użycie kodu, co pozwala na tworzenie bibliotek kodu, które można wykorzystać w różnych projektach. Pozwala to unikać powtarzania kodu i skupić się na nowych funkcjach.
+
+4. **Łatwość instalacji i dystrybucji:** Moduły i pakiety ułatwiają instalację i dystrybucję kodu. Można je łatwo udostępnić i zainstalować za pomocą narzędzi takich jak pip (Python Package Installer) oraz wersjonować i publikować na platformach takich jak PyPI (Python Package Index).
+
+5. **Współpraca:** Moduły i pakiety ułatwiają współpracę między programistami, ponieważ każdy może pracować nad własnym modułem lub pakiecie, nie wpływając na pracę innych. To pozwala na równoczesne rozwijanie różnych części projektu.
+
+
+---
+
+Różnice między modułem a pakietem:
+
+1. Definicja:
+   - Moduł: Moduł to pojedynczy plik zawierający kod Pythona (z rozszerzeniem .py). Może zawierać funkcje, klasy, zmienne i inne elementy kodu, które można zaimportować i wykorzystać w innych częściach projektu.
+   - Pakiet: Pakiet to katalog zawierający jeden lub więcej modułów Pythona. Pakiet musi zawierać specjalny plik o nazwie `__init__.py` (może być pusty), który informuje Pythona, że dany katalog jest pakietem. Pakiet może również zawierać inne pakiety, tworząc strukturę hierarchiczną.
+
+2. Importowanie:
+   - Moduł: Moduły można importować do innych modułów lub programów za pomocą słowa kluczowego `import`. Na przykład, jeśli masz moduł o nazwie `my_module.py`, możesz go zaimportować za pomocą `import my_module`.
+   - Pakiet: Aby zaimportować moduł z pakietu, używa się notacji z kropką. Na przykład, jeśli masz pakiet o nazwie `my_package` z modułem `my_module`, możesz zaimportować moduł za pomocą `import my_package.my_module`. Można również zaimportować konkretne elementy z modułu za pomocą słowa kluczowego `from`, np. `from my_package.my_module import my_function`.
+
+3. Organizacja:
+   - Moduł: Moduły są prostszymi jednostkami organizacyjnymi, które służą do przechowywania powiązanego kodu, takiego jak funkcje, klasy i zmienne. Moduły są dobre dla mniejszych projektów i prostszych struktur.
+   - Pakiet: Pakiety są bardziej zaawansowaną formą organizacji kodu, która pozwala na tworzenie hierarchicznych struktur i grupowanie powiązanych modułów. Są one bardziej odpowiednie dla większych projektów i bardziej złożonych struktur.
+
+---
+
+1. Stwórz nowy projekt w Pycharm i w pliku `main.py` wypisz kod:
+
+```python
+print(dir())
+```
+
+2.W tym samym projekcie dodaj plik `mod.py` o zawartości:
+
+```python
+s = "Data science."
+a = [100, 200, 300]
+
+
+def foo(arg):
+    print(f'arg = {arg}')
+
+
+class Foo:
+    pass
+
+```
+
+3. W main dodaj teraz
+
+```python
+import mod
+
+print(dir())
+print(mod.s)
+print(mod.a)
+mod.foo(['abc', 'XYZ', '123'])
+x = mod.Foo()
+print(x)
+```
+
+4. Sprawdź, skąd instalowane są moduły uruchamiając komendę:
+
+```python
+import sys
+
+print(sys.path)
+```
+
+i sprawdźmy gdzie znajduje się nasz moduł:
+
+```python
+print(mod.__file__)
+```
+
+5. Inny sposób import modułu:
+
+```python
+from mod import s, foo
+print(s)
+print(foo('abc'))
+```
+
+```python
+from mod import Foo
+x = Foo()
+print(x)
+```
+
+lub 
+
+```python
+from mod import *
+
+
+print(s)
+print(a)
+print(foo)
+print(Foo)
+```
+
+
+6. Zmodyfikuj kod w pliku `mod.py` i jeszcze raz uruchom skrypt:
+
+```python
+s = "Data science."
+a = [100, 200, 300]
+
+
+def foo(arg):
+    print(f'arg = {arg}')
+
+
+class Foo:
+    pass
+
+
+print(s)
+print(a)
+foo('XYZ')
+x = Foo()
+print(x)
+```
+
+7. Zmodyfikuj ponownie plik `mod.py` i uruchom skrypt:
+
+```python
+s = "Data science."
+a = [100, 200, 300]
+
+
+def foo(arg):
+    print(f'arg = {arg}')
+
+
+class Foo:
+    pass
+
+
+if __name__ == '__main__':
+    print(s)
+    print(a)
+    foo('XYZ')
+    x = Foo()
+    print(x)
+
+```
+
+8. W tym samym projekcie stwórz plik `fact.py` i następnie go:
+
+```python
+def fact(n):
+    return 1 if n == 1 else n * fact(n - 1)
+
+
+if __name__ == '__main__':
+    import sys
+
+    if len(sys.argv) > 1:
+        print(fact(int(sys.argv[1])))
+
+```
+
+komenda z terminala:
+
+```bash
+python fact.py 4
+```
+
+9. Stwórz nowy projekt, stwórz w projekcie folder `pkg` a w nim 4 pliki i poniższej zawartości:
+
+Plik `mod1.py`:
+
+```python
+def foo():
+    print('[mod1] foo()')
+
+
+class Foo:
+    pass
+
+```
+
+Plik `mod2.py`:
+
+```python
+def bar():
+    print('[mod2] bar()')
+
+
+class Bar:
+    pass
+```
+
+Plik `mod3.py`:
+
+```python
+def baz():
+    print('[mod3] baz()')
+
+
+class Baz:
+    pass
+```
+
+Plik `mod4.py`:
+
+```python
+def qux():
+    print('[mod4] qux()')
+
+
+class Qux:
+    pass
+```
+
+10. Poćwicz różne sposoby importu i sprawdź różnice:
+
+```python
+from pkg.mod3 import *
+from pkg import *
+```
+
+11. Dodaj w folderze `pkg` plik `__init__.py` o treści:
+
+```python
+__all__ = ['mod1', 'mod2', 'mod3', 'mod4']
+```
+
+Sprawdź teraz różne sposoby importu.
+
+

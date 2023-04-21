@@ -1,0 +1,272 @@
+---
+title: "Programowanie współbieżne"
+format: html
+---
+
+Programowanie współbieżne polega na realizacji kilku zadań równocześnie, co jest kluczowe dla wykorzystania pełnego potencjału współczesnych procesorów wielordzeniowych. 
+
+## Moduł `threading`
+
+Wątki są lekkimi jednostkami wykonawczymi w obrębie jednego procesu. W Pythonie moduł `threading` pozwala na tworzenie i zarządzanie wątkami. Wątki działają na tych samych zasobach, co ich proces macierzysty, co oznacza, że mogą wystąpić problemy związane z synchronizacją.
+
+
+```python
+import threading
+import time
+
+def print_hello():
+    for i in range(3):
+        print("Hello")
+        time.sleep(1)
+
+def print_world():
+    for i in range(3):
+        print("World")
+        time.sleep(1)
+
+# Tworzenie wątków
+thread1 = threading.Thread(target=print_hello)
+thread2 = threading.Thread(target=print_world)
+
+# Uruchamianie wątków
+thread1.start()
+thread2.start()
+
+# Oczekiwanie na zakończenie wątków
+thread1.join()
+thread2.join()
+
+print("All threads finished.")
+
+```
+
+Możliwe problemy:
+
+```python
+import threading
+
+# Współdzielony zasób
+counter = 0
+
+def increment_counter():
+    global counter
+    local_counter = counter
+    local_counter += 1
+    counter = local_counter
+
+def worker():
+    for _ in range(1000000):
+        increment_counter()
+
+# Tworzenie wątków
+thread1 = threading.Thread(target=worker)
+thread2 = threading.Thread(target=worker)
+
+# Uruchamianie wątków
+thread1.start()
+thread2.start()
+
+# Oczekiwanie na zakończenie wątków
+thread1.join()
+thread2.join()
+
+print("Counter: ", counter)
+
+```
+
+Jak naprawić?
+
+```python
+import threading
+
+# Współdzielony zasób
+counter = 0
+
+# Tworzenie obiektu Lock
+lock = threading.Lock()
+
+def increment_counter():
+    global counter
+    with lock:
+        local_counter = counter
+        local_counter += 1
+        counter = local_counter
+
+def worker():
+    for _ in range(1000000):
+        increment_counter()
+
+# Tworzenie wątków
+thread1 = threading.Thread(target=worker)
+thread2 = threading.Thread(target=worker)
+
+# Uruchamianie wątków
+thread1.start()
+thread2.start()
+
+# Oczekiwanie na zakończenie wątków
+thread1.join()
+thread2.join()
+
+print("Counter: ", counter)
+
+```
+
+Inaczej:
+
+```python
+import threading
+
+# Współdzielony zasób
+counter = 0
+
+# Tworzenie obiektu Lock
+lock = threading.Lock()
+
+def increment_counter():
+    global counter
+    lock.acquire()  # Uzyskanie blokady
+    local_counter = counter
+    local_counter += 1
+    counter = local_counter
+    lock.release()  # Zwolnienie blokady
+
+def worker():
+    for _ in range(10000):
+        increment_counter()
+
+# Tworzenie wątków
+thread1 = threading.Thread(target=worker)
+thread2 = threading.Thread(target=worker)
+
+# Uruchamianie wątków
+thread1.start()
+thread2.start()
+
+# Oczekiwanie na zakończenie wątków
+thread1.join()
+thread2.join()
+
+print("Counter: ", counter)
+
+```
+
+## Moduł `multiprocessing`
+
+Procesy to jednostki wykonawcze, które działają niezależnie od siebie. W Pythonie moduł `multiprocessing` umożliwia tworzenie i zarządzanie procesami. Ponieważ procesy nie współdzielą zasobów, są mniej podatne na problemy związane z synchronizacją, ale wymagają większego nakładu zasobów.
+
+```python
+import multiprocessing
+import time
+
+
+def print_hello():
+    for i in range(3):
+        print("Hello")
+        time.sleep(1)
+
+
+def print_world():
+    for i in range(3):
+        print("World")
+        time.sleep(1)
+
+
+if __name__ == '__main__':
+    # Tworzenie procesów
+    process1 = multiprocessing.Process(target=print_hello)
+    process2 = multiprocessing.Process(target=print_world)
+
+    # Uruchamianie procesów
+    process1.start()
+    process2.start()
+
+    # Oczekiwanie na zakończenie procesów
+    process1.join()
+    process2.join()
+
+    print("All processes finished.")
+
+```
+
+Współdzielone zasoby:
+
+```python
+import multiprocessing
+import time
+
+def increment(shared_array, shared_value):
+    for i in range(len(shared_array)):
+        time.sleep(0.5)
+        shared_array[i] += 1
+
+    time.sleep(0.5)
+    shared_value.value += 1
+
+
+if __name__ == "__main__":
+    # Tworzenie współdzielonego Array i Value
+    shared_array = multiprocessing.Array('i', [1, 2, 3, 4, 5])
+    shared_value = multiprocessing.Value('i', 10)
+
+    # Tworzenie procesów
+    process1 = multiprocessing.Process(target=increment, args=(shared_array, shared_value))
+    process2 = multiprocessing.Process(target=increment, args=(shared_array, shared_value))
+
+    # Uruchamianie procesów
+    process1.start()
+    process2.start()
+
+    # Oczekiwanie na zakończenie procesów
+    process1.join()
+    process2.join()
+
+    # Wypisywanie wyników
+    print("Shared array: ", shared_array[:])
+    print("Shared value: ", shared_value.value)
+
+```
+
+Jak lepiej?
+
+```python
+import multiprocessing
+import time
+
+def increment(shared_array, shared_value, lock):
+    for i in range(len(shared_array)):
+        time.sleep(0.5)
+        with lock:
+            shared_array[i] += 1
+
+    time.sleep(0.5)
+    with lock:
+        shared_value.value += 1
+
+
+if __name__ == "__main__":
+
+    # Tworzenie współdzielonego Array i Value
+    shared_array = multiprocessing.Array('i', [1, 2, 3, 4, 5])
+    shared_value = multiprocessing.Value('i', 10)
+
+    # Tworzenie obiektu Lock
+    lock = multiprocessing.Lock()
+
+    # Tworzenie procesów
+    process1 = multiprocessing.Process(target=increment, args=(shared_array, shared_value, lock))
+    process2 = multiprocessing.Process(target=increment, args=(shared_array, shared_value, lock))
+
+    # Uruchamianie procesów
+    process1.start()
+    process2.start()
+
+    # Oczekiwanie na zakończenie procesów
+    process1.join()
+    process2.join()
+
+    # Wypisywanie wyników
+    print("Shared array: ", shared_array[:])
+    print("Shared value: ", shared_value.value)
+
+```

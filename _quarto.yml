@@ -50,8 +50,16 @@ website:
             file: po15.qmd
           - text: "Więcej metod magicznych"
             file: po16.qmd
+      - text: "Dzień 5"
+        menu:
           - text: "Moduły i pakiety"
-            file: po17.qmd
+            file: mp.qmd
+          - text: "Wyrażenia lambda"
+            file: lambda.qmd
+          - text: "Wyrażenia regularne"
+            file: re.qmd
+          - text: "Programowanie współbieżne"
+            file: pw.qmd
       - text: "Mini-projekt"
         file: miniprojekt.qmd
             
