@@ -188,9 +188,11 @@ print(matches)
 matches2 = re.findall("a+", text2)
 print(matches2)
 
+```
+
 Wzorzec `'a?b'` ma na celu znalezienie wystąpień litery `'b'` oraz opcjonalnie litery `'a'` bezpośrednio przed nią w przeszukiwanym tekście.
 
-```
+
 
 Kod nr 12:
 
