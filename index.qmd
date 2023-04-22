@@ -11,7 +11,6 @@ Opracowanie materiałów: dr Piotr Jastrzębski
 
 Strona domowa <http://wmii.uwm.edu.pl/~piojas/>
 
-Ostatnia aktualizacja: `r Sys.time()`
 
 Kod z zajęć z dnia 28.01.2023:
 
