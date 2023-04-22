@@ -345,7 +345,7 @@ def zamien_polskie_znaki(napis):
     def zamien_znak(znak):
         return polskie_do_lacinskich.get(znak.group())
 
-    wzorzec = "[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]"
+    wzorzec = r"[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]"
     napis_zamieniony = re.sub(wzorzec, zamien_znak, napis)
     return napis_zamieniony
 
