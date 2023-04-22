@@ -109,7 +109,7 @@ print(re.search('[A-Z]t', s))
 
 ```
 
-Wzorzec `'[0-9a-fA-f]'` ma na celu znalezienie pojedynczego znaku, który jest cyfrą szesnastkową. 
+Wzorzec `'[0-9a-fA-F]'` ma na celu znalezienie pojedynczego znaku, który jest cyfrą szesnastkową. 
 
 Kod nr 7:
 
@@ -117,7 +117,7 @@ Kod nr 7:
 import re
 
 s = 'ABC'
-print(re.search('[0-9a-fA-f]', s))
+print(re.search('[0-9a-fA-F]', s))
 
 ```
 

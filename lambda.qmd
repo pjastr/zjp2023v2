@@ -1,5 +1,5 @@
 ---
-title: "Wyrażenia regularne"
+title: "Wyrażenia lambda"
 format: html
 ---
 
